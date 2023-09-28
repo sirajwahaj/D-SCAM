@@ -11,7 +11,7 @@ public class Login {
         boolean isAdmin = false;
         
 
-        try(Scanner scan = new Scanner(new File("src/account.txt"))){
+        try(Scanner scan = new Scanner(new File("textfile/account.txt"))){
             while (scan.hasNextLine()) {
                 String line = scan.nextLine();
                 String[] parts = line.split(",");

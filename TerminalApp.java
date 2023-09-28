@@ -40,7 +40,7 @@ import java.util.Scanner;
 
     public void adminPage(){
         System.out.print("Välkommen Admin - " +  
-                "1. Lägg till/Ta bort produkter\n" +
+                "\n1. Lägg till/Ta bort produkter\n" +
                 "2. Visa och redigera kunduppgifter\n" +
                 "3. Översikt över alla beställningar och transaktioner\n" +
                 "\n\nQ. Logga ut" +

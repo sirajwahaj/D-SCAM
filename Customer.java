@@ -74,13 +74,11 @@ public class Customer {
     }
     
     public void addCustomerToFile(Customer customer){
-        String fileName = "src/account.txt";
+        String fileName = "textfile/account.txt";
         try(PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileName, true), "ISO-8859-1"))){
             String addUser = customer.toString();
             writer.println(addUser);
             System.out.println("Registreringen lyckades!");
-            TerminalApp TerminalApp = new TerminalApp();
-            TerminalApp.run();
 
         }catch (IOException e) { 
             e.printStackTrace();
