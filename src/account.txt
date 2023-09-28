@@ -1,0 +1,2 @@
+Kalle,Alli,Sova,Naj,admin=true
+User,User,Christoffer,Rorsjogatan 7
