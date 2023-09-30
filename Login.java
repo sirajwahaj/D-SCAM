@@ -24,8 +24,8 @@ public class Login {
                     }
                     break;
                 }
-            }
-                if (userFound) {
+            } 
+                if (userFound) { // Har lagt denna if stats utanför loopen då den annars bara loopar första linjen i accounts och inte tar med vanliga users.
                 if (isAdmin) {
                     TerminalApp.adminPage();
                 } else {
@@ -46,7 +46,7 @@ public class Login {
     }
 }
 
-// Kontrollera resultatet
+
 
 
 
