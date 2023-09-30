@@ -22,7 +22,9 @@ public class Login {
                     if (line.contains("admin=true")) {
                     isAdmin = true;
                     }
+                    break;
                 }
+            }
                 if (userFound) {
                 if (isAdmin) {
                     TerminalApp.adminPage();
@@ -32,9 +34,7 @@ public class Login {
                 } else {
                     System.out.println("\nAnvändaren är inte registrerad.\n");
                     TerminalApp.run();
-                    break;
-                }
-            }
+                }        
         }
         catch (FileNotFoundException e) {
             e.printStackTrace();
