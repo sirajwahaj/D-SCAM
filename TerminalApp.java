@@ -105,8 +105,8 @@ import java.util.Scanner;
         }
 
         public void logOut() {
+            System.out.println(loggedInUser + " har loggats ut.");
             loggedInUser = null; // Nollställ inloggad användare.
-            System.out.println("Du har loggat ut.");
             run();
         }
 }

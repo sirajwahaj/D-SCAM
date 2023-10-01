@@ -17,13 +17,45 @@ public class Customer {
         this.address = address;
     }
 
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getPassword() {
+        return password;
+    }
+
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getAddress() {
+        return address;
+    }
+
+    public void setAddress(String address) {
+        this.address = address;
+    }
+
     @Override
     public String toString() {
         return username + "," + password + "," + name + "," + address;
     }
     
+    
     public void registerUser(){
-        TerminalApp TerminalApp = new TerminalApp();
         Scanner scan = new Scanner(System.in);
         String userName = "";
         String password = "";
@@ -44,7 +76,7 @@ public class Customer {
                     switch (choice){
                     case "1":
                     System.out.print("Användarnamn: ");
-                    userName = scan.nextLine(); 
+                    userName = scan.nextLine();
                     break;
                     case "2":
                     System.out.print("Lösenord: ");
@@ -59,13 +91,24 @@ public class Customer {
                     adress = scan.nextLine();
                     break;
                     case "5":
-                    Customer customer = new Customer(userName, password, firstName, adress);
-                    addCustomerToFile(customer);
-                    run = false;
+                    if (userName.isEmpty()){                        
+                        System.out.println("Du måste välja ett användarnamn");
+                    } else if (password.isEmpty()) {
+                        System.out.println("Du måste ange ett lösenord");
+                    } else if (firstName.isEmpty()) {
+                        System.out.println("Du måste ange ett lösenord");
+                    } else if (adress.isEmpty()) {
+                        System.out.println("Du måste skriva in adress");
+                    } else {
+                        Customer customer = new Customer(userName, password, firstName, adress);
+                        addCustomerToFile(customer);
+                        run = false;
+                    } 
+                    
                     break;
                     case "Q":
                     case "q":
-                    TerminalApp.run();
+                    run = false;
                     break;
                     
                     default: System.out.println("du måste välja mellan 1-4");
@@ -87,25 +130,3 @@ public class Customer {
     }
     
 }
-
-// public void addToCart(Product product) {
-//     shoppingCart.add(product);
-// }
-
-// public void removeFromCart(Product product) {
-//     shoppingCart.remove(product);
-// }
-
-// public void checkout() {
-//     // Skapa en ny order baserad på innehållet i varukorgen
-//     // Order order = new Order(this, shoppingCart);
-//     // purchaseHistory.add(order);
-//     // shoppingCart.clear();
-// }
-
-// public void viewPurchaseHistory() {
-//     System.out.println(order);
-//     for (Order order : purchaseHistory) {
-//     }
-// }
-//}
