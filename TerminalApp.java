@@ -11,7 +11,7 @@ import java.util.Scanner;
             Login Login = new Login();
            
             while(run){
-                System.out.print("Välkommen till D-SCAM \n " +
+                System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
                     "2. Registrera ny kund \n " +
                     "3. Admin \n " +
@@ -43,7 +43,7 @@ import java.util.Scanner;
         public void adminPage(String username){
             loggedInUser = username;
             while(run){
-                System.out.print("Välkommen Admin - " + loggedInUser + 
+                System.out.print("\n\nVälkommen - " + loggedInUser + " (Admin)" + 
                         "\n1. Lägg till/Ta bort produkter\n" +
                         "2. Visa och redigera kunduppgifter\n" +
                         "3. Översikt över alla beställningar och transaktioner\n" +
