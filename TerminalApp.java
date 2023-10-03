@@ -50,6 +50,7 @@ import java.util.Scanner;
 
         switch(choice){
             case "1":
+                Product.AddProduct();
                 //Visa alla produkter med möjlighet att ta bort/skapa ny
                 break;
             case "2":
