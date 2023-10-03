@@ -16,7 +16,6 @@ import java.util.Scanner;
                 System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
                     "2. Registrera ny kund \n " +
-                    "3. Admin \n " +
                     "\n\nVal - ");
                 String choice = scan.nextLine();
 
@@ -30,11 +29,6 @@ import java.util.Scanner;
                         break;
                     case "2":
                         customer.registerUser();
-                        break;
-                    case "3":
-                        //Gå till adminPage
-                        break;
-                    case "4":
                         break;
                     default:
                         System.out.println("Ogiltigt val");
@@ -56,6 +50,7 @@ import java.util.Scanner;
 
                 switch(choice){
                     case "1":
+                        Product.AddProduct();
                         //Visa alla produkter med möjlighet att ta bort/skapa ny
                         break;
                     case "2":
@@ -76,15 +71,15 @@ import java.util.Scanner;
 
         public void customerPage(String username){
             loggedInUser = username;
+            Scanner scan = new Scanner(System.in);
             while(run){
-                Scanner scan = new Scanner(System.in);
                 System.out.print("\n\nVälkommen - " + loggedInUser + "\n" +
                         "1. Shoppa \n" +
                         "2. Se varukorg \n" +
                         "3. Se kvitton och orderhistorik \n " +
                         "\n\nQ. Logga ut" + 
                         "\nVal - ");
-                String choice = scan.nextLine();
+                String choice = scan.next();
                 switch(choice){
                     case "1":
                         //Gå till "product"
@@ -102,8 +97,8 @@ import java.util.Scanner;
                     default:
                         System.out.println("Ogiltigt val");
                 }
-                scan.close();
             }
+            scan.close();
         }
         public void showShoppingCart( ) {
             ShoppingCart shoppingCart = Customer.getShoppingCart();

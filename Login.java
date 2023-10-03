@@ -28,20 +28,20 @@ public class Login {
                         }
                     }
                 } 
-                    if (userFound) { // Har lagt denna if stats utanför loopen då den annars bara loopar första linjen i accounts och inte söker alla rader i accounts.
-                        if (isAdmin) {
+                if (userFound) { // Har lagt denna if stats utanför loopen då den annars bara loopar första linjen i accounts och inte söker alla rader i accounts.
+                    if (isAdmin) {
                         TerminalApp.adminPage(username);
-                        } else {
-                        TerminalApp.customerPage(username);
-                        }
                     } else {
-                        System.out.println("\nAnvändaren är inte registrerad.\n");
-                        TerminalApp.run();
-                    }        
+                        TerminalApp.customerPage(username);
+                    }
+                } else {
+                    System.out.println("\nAnvändaren är inte registrerad.\n");
+                    TerminalApp.run();
+                }
             }
             catch (FileNotFoundException e) {
                 e.printStackTrace();
-                System.out.println("Något gick fel vid inloggning.");
+                System.out.println("Något gick fel vid inloggning." + e.getMessage());
             }
         }
 
