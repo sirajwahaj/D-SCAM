@@ -1,6 +1,7 @@
 import java.util.Scanner;
 
     public class TerminalApp {
+        String username;
         private String loggedInUser;
         Scanner scan = new Scanner(System.in);
         boolean run = true;
@@ -54,6 +55,7 @@ import java.util.Scanner;
 
                 switch(choice){
                     case "1":
+                        Product.AddProduct();
                         //Visa alla produkter med möjlighet att ta bort/skapa ny
                         break;
                     case "2":
