@@ -50,6 +50,7 @@ import java.util.Scanner;
 
                 switch(choice){
                     case "1":
+                        System.out.println("dkowakdAKDaodkaowkdA");
                         Product.AddProduct();
                         //Visa alla produkter med möjlighet att ta bort/skapa ny
                         break;
@@ -75,7 +76,7 @@ import java.util.Scanner;
             while(run){
                 System.out.print("\n\nVälkommen - " + loggedInUser + "\n" +
                         "1. Shoppa \n" +
-                        "2. Se varukorg \n" +
+                        "2. Korg \n" +
                         "3. Se kvitton och orderhistorik \n " +
                         "\n\nQ. Logga ut" + 
                         "\nVal - ");
