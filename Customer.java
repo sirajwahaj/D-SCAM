@@ -125,7 +125,7 @@ public class Customer {
 
         }catch (IOException e) { 
             e.printStackTrace();
-            System.out.println("Något gick fel.");
+            System.out.println("Något gick fel." + e.getMessage());
         }
     }
     

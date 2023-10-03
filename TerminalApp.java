@@ -15,7 +15,6 @@ import java.util.Scanner;
                 System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
                     "2. Registrera ny kund \n " +
-                    "3. Admin \n " +
                     "\n\nVal - ");
                 String choice = scan.nextLine();
 
@@ -29,9 +28,6 @@ import java.util.Scanner;
                         break;
                     case "2":
                         customer.registerUser();
-                        break;
-                    case "3":
-                        //Gå till adminPage
                         break;
                     case "4":
                         break;
