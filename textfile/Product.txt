@@ -1,2 +1,3 @@
 tr�ja,dad,13.0
 dwk,dka,2.0
+Kalle Malle,Tjoho,30.0
