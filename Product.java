@@ -8,15 +8,18 @@ public class Product {
     private String description;
     private double price;
 
-    public Product(String name, String description, double price) {
+    public int qty;
+
+    public Product(String name, String description, double price,int qty) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.qty = qty;
     }
 
     @Override
     public String toString() {
-        return name + "," + description + "," + price;
+        return name + "," + description + "," + price + "," + qty;
     }
 
     public static void AddProduct(){
@@ -24,6 +27,7 @@ public class Product {
         String name = "";
         String description = "";
         double price = 0;
+        int qty = 0;
         boolean run = true;
 
         while (run) {
@@ -51,7 +55,7 @@ public class Product {
                         scan.nextLine();
                         continue;
                     }
-                    Product product = new Product(name, description, price);
+                    Product product = new Product(name, description, price, qty);
                     addProductToFile(product);
                     System.out.println("Produkten har lagts till i listan!");
                     break;

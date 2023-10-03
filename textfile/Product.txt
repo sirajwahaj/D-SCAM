@@ -1,3 +1,4 @@
 
 
-tr�ja,dad,13.0
+
+test,test,20.0,0
