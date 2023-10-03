@@ -77,10 +77,9 @@ import java.util.Scanner;
         public void customerPage(String username){
             loggedInUser = username;
             while(run){
-                Scanner scan = new Scanner(System.in);
                 System.out.print("\n\nVälkommen - " + loggedInUser + "\n" +
                         "1. Shoppa \n" +
-                        "2. Se varukorg \n" +
+                        "2. Korg \n" +
                         "3. Se kvitton och orderhistorik \n " +
                         "\n\nQ. Logga ut" + 
                         "\nVal - ");
