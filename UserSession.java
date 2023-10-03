@@ -1,10 +1,13 @@
+import java.util.Scanner;
+
 public class UserSession {
     private String username;
     private boolean isLoggedIn = false;
-
+    Scanner scan = new Scanner(System.in);
     private static UserSession instance;
 
     private UserSession(){
+        
 
     }
 
@@ -21,8 +24,15 @@ public class UserSession {
     }
 
     public void logout(){
+        System.out.println("vill du logga ut? Yes/no");
+        String answer = scan.nextLine();
+        if(answer.equalsIgnoreCase("Yes")){
         this.username = null;
         this.isLoggedIn = false;
+        System.out.println("Du har blivit utloggad.");
+        }
+
+        
     }
 
     public String getUsername(){

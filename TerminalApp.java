@@ -61,7 +61,7 @@ import java.util.Scanner;
                         break;
                     case "Q":
                     case "q":
-                        userSession.logout();
+                        userSession.logout();                        
                         break;
                     default:
                         System.out.println("Ogiltigt val");
