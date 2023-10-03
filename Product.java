@@ -9,6 +9,15 @@ public class Product {
     private double price;
     public int qty;
 
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+
     public Product(String name, String description, double price,int qty) {
         this.name = name;
         this.description = description;
