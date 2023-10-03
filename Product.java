@@ -111,7 +111,7 @@ public class Product {
         }
         if (!run) {
             TerminalApp terminalApp = new TerminalApp();
-            terminalApp.adminPage(terminalApp.username);
+            terminalApp.adminPage();
 
         }
     }

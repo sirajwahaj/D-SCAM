@@ -2,10 +2,9 @@ import java.util.List;
 import java.util.Scanner;
 
     public class TerminalApp {
-        public String username;
-        private String loggedInUser;
+        private UserSession userSession = UserSession.getInstance();
         Scanner scan = new Scanner(System.in);
-        boolean run = true;
+        boolean run = true; 
         
 
         public void run(){
@@ -36,10 +35,11 @@ import java.util.Scanner;
             }
         }
 
-        public void adminPage(String username){
-            loggedInUser = username;
-            while(run){
-                System.out.print("\n\nVälkommen - " + loggedInUser + " (Admin)" + 
+        public void adminPage(){
+            
+            while(userSession.isLoggedIn()){
+                String username = userSession.getUsername();
+                System.out.print("\n\nVälkommen - " + username + " (Admin)" + 
                         "\n1. Lägg till/Ta bort produkter\n" +
                         "2. Visa och redigera kunduppgifter\n" +
                         "3. Översikt över alla beställningar och transaktioner\n" +
@@ -61,7 +61,7 @@ import java.util.Scanner;
                         break;
                     case "Q":
                     case "q":
-                        logOut();
+                        userSession.logout();
                         break;
                     default:
                         System.out.println("Ogiltigt val");
@@ -69,11 +69,11 @@ import java.util.Scanner;
             }
         }
 
-        public void customerPage(String username){
-            loggedInUser = username;
+        public void customerPage(){
             Scanner scan = new Scanner(System.in);
-            while(run){
-                System.out.print("\n\nVälkommen - " + loggedInUser + "\n" +
+            while(userSession.isLoggedIn()){
+                String username = userSession.getUsername();
+                System.out.print("\n\nVälkommen - " + username + "\n" +
                         "1. Shoppa \n" +
                         "2. Korg \n" +
                         "3. Se kvitton och orderhistorik \n " +
@@ -89,16 +89,16 @@ import java.util.Scanner;
                         break;
                     case "3":
                         //Öppna aktuell kunds textfil med information om köp och kvitton
+                        break;
                     case "Q":
                     case "q":
-                        logOut();
-                        //run = false;
+                        userSession.logout();
                         break;
                     default:
                         System.out.println("Ogiltigt val");
                 }
             }
-            scan.close();
+            
         }
         public void showShoppingCart( ) {
             ShoppingCart shoppingCart = Customer.getShoppingCart();
@@ -115,9 +115,4 @@ import java.util.Scanner;
             }
         }
 
-        public void logOut() {
-            System.out.println(loggedInUser + " har loggats ut.");
-            loggedInUser = null; // Nollställ inloggad användare.
-            run();
-        }
 }
