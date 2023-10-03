@@ -10,11 +10,14 @@ public class Customer {
     private String name;
     private String address;
 
+    private static ShoppingCart shoppingCart;
+
     public Customer(String username, String password, String name, String address) {
         this.username = username;
         this.password = password;
         this.name = name;
         this.address = address;
+        shoppingCart = new ShoppingCart();
     }
 
     public String getUsername() {
@@ -125,8 +128,13 @@ public class Customer {
 
         }catch (IOException e) { 
             e.printStackTrace();
-            System.out.println("Något gick fel.");
+            System.out.println("Något gick fel." + e.getMessage());
         }
+    }
+
+    public static ShoppingCart getShoppingCart() {
+
+        return shoppingCart;
     }
     
 }

@@ -1,7 +1,8 @@
+import java.util.List;
 import java.util.Scanner;
 
     public class TerminalApp {
-        String username;
+        public String username;
         private String loggedInUser;
         Scanner scan = new Scanner(System.in);
         boolean run = true;
@@ -15,7 +16,6 @@ import java.util.Scanner;
                 System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
                     "2. Registrera ny kund \n " +
-                    "3. Admin \n " +
                     "\n\nVal - ");
                 String choice = scan.nextLine();
 
@@ -29,11 +29,6 @@ import java.util.Scanner;
                         break;
                     case "2":
                         customer.registerUser();
-                        break;
-                    case "3":
-                        //Gå till adminPage
-                        break;
-                    case "4":
                         break;
                     default:
                         System.out.println("Ogiltigt val");
@@ -76,21 +71,21 @@ import java.util.Scanner;
 
         public void customerPage(String username){
             loggedInUser = username;
+            Scanner scan = new Scanner(System.in);
             while(run){
-                Scanner scan = new Scanner(System.in);
                 System.out.print("\n\nVälkommen - " + loggedInUser + "\n" +
                         "1. Shoppa \n" +
-                        "2. Se varukorg \n" +
+                        "2. Korg \n" +
                         "3. Se kvitton och orderhistorik \n " +
                         "\n\nQ. Logga ut" + 
                         "\nVal - ");
-                String choice = scan.nextLine();
+                String choice = scan.next();
                 switch(choice){
                     case "1":
                         //Gå till "product"
                         break;
                     case "2":
-                        //Gå till "varukorg"
+                        Customer.getShoppingCart();
                         break;
                     case "3":
                         //Öppna aktuell kunds textfil med information om köp och kvitton
@@ -102,7 +97,21 @@ import java.util.Scanner;
                     default:
                         System.out.println("Ogiltigt val");
                 }
-                scan.close();
+            }
+            scan.close();
+        }
+        public void showShoppingCart( ) {
+            ShoppingCart shoppingCart = Customer.getShoppingCart();
+            List<Product> products = shoppingCart.getProducts();
+
+            if (products.isEmpty()) {
+                System.out.println("Din varukorg är tom.");
+            } else {
+                System.out.println("Din varukorg innehåller följande produkter:");
+                for (int i = 0; i < products.size(); i++) {
+                    Product product = products.get(i);
+                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                }
             }
         }
 
