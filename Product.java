@@ -8,6 +8,30 @@ public class Product {
     private String description;
     private double price;
 
+    public String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
     public Product(String name, String description, double price) {
         this.name = name;
         this.description = description;
@@ -26,7 +50,8 @@ public class Product {
         double price = 0;
         boolean run = true;
 
-        while (run) {
+        while (run) { 
+            displayAllProducts();
             System.out.println("Hantera Produkter:");
             System.out.println("1. Lägg till ny produkt");
             System.out.println("2. Ta bort produkt");
@@ -122,5 +147,33 @@ public class Product {
         return removed;
     }
 
+    public static void displayAllProducts() {
+        List<Product> products = getAllProductsFromTextfile();
+        System.out.println("\n\nAlla produkter:");
+        for (Product product : products) {
+            System.out.println("Namn: " + product.getName() + "Beskrivning: " + product.getDescription() + "Pris: " + product.getPrice() + "kr");
+        }
+    }
 
+    public static List<Product> getAllProductsFromTextfile() {
+        List<Product> productList = new ArrayList<>();
+
+        try (BufferedReader reader = new BufferedReader(new FileReader("textfile/Product.txt"))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 3) {
+                    String name = parts[0];
+                    String description = parts[1];
+                    double price = Double.parseDouble(parts[2]);
+                    Product product = new Product(name, description, price);
+                    productList.add(product);
+                }
+            }
+        } catch (IOException e) {
+            System.err.println("Problem med att läsa filen: " + e.getMessage());
+        }
+
+        return productList;
+    }
 }
