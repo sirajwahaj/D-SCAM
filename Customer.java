@@ -2,6 +2,7 @@ import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.OutputStreamWriter;
 import java.io.PrintWriter;
+import java.util.List;
 import java.util.Scanner;
 
 public class Customer {
@@ -135,6 +136,20 @@ public class Customer {
     public static ShoppingCart getShoppingCart() {
 
         return shoppingCart;
+    }
+    public static void showShoppingCart() {
+        ShoppingCart shoppingCart = Customer.getShoppingCart();
+        List<Product> products = shoppingCart.getProducts();
+
+        if (products.isEmpty()) {
+            System.out.println("Din varukorg är tom.");
+        } else {
+            System.out.println("Din varukorg innehåller följande produkter:");
+            for (int i = 0; i < products.size(); i++) {
+                Product product = products.get(i);
+                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+            }
+        }
     }
     
 }

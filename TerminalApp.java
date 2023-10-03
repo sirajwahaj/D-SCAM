@@ -82,10 +82,11 @@ import java.util.Scanner;
                 String choice = scan.next();
                 switch(choice){
                     case "1":
+                        System.out.println("Välj produkter att lägga till i varukorgen: ");
                         //Gå till "product"
                         break;
                     case "2":
-                        Customer.getShoppingCart();
+                        Customer.showShoppingCart();
                         break;
                     case "3":
                         //Öppna aktuell kunds textfil med information om köp och kvitton
@@ -100,20 +101,7 @@ import java.util.Scanner;
             }
             scan.close();
         }
-        public void showShoppingCart( ) {
-            ShoppingCart shoppingCart = Customer.getShoppingCart();
-            List<Product> products = shoppingCart.getProducts();
 
-            if (products.isEmpty()) {
-                System.out.println("Din varukorg är tom.");
-            } else {
-                System.out.println("Din varukorg innehåller följande produkter:");
-                for (int i = 0; i < products.size(); i++) {
-                    Product product = products.get(i);
-                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
-                }
-            }
-        }
 
         public void logOut() {
             System.out.println(loggedInUser + " har loggats ut.");
