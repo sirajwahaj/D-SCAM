@@ -1,6 +1,8 @@
+import java.util.List;
 import java.util.Scanner;
 
     public class TerminalApp {
+        public String username;
         private String loggedInUser;
         Scanner scan = new Scanner(System.in);
         boolean run = true;
@@ -88,7 +90,7 @@ import java.util.Scanner;
                         //Gå till "product"
                         break;
                     case "2":
-                        //Gå till "varukorg"
+                        Customer.getShoppingCart();
                         break;
                     case "3":
                         //Öppna aktuell kunds textfil med information om köp och kvitton
@@ -101,6 +103,20 @@ import java.util.Scanner;
                         System.out.println("Ogiltigt val");
                 }
                 scan.close();
+            }
+        }
+        public void showShoppingCart( ) {
+            ShoppingCart shoppingCart = Customer.getShoppingCart();
+            List<Product> products = shoppingCart.getProducts();
+
+            if (products.isEmpty()) {
+                System.out.println("Din varukorg är tom.");
+            } else {
+                System.out.println("Din varukorg innehåller följande produkter:");
+                for (int i = 0; i < products.size(); i++) {
+                    Product product = products.get(i);
+                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                }
             }
         }
 
