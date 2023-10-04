@@ -151,5 +151,14 @@ public class Customer {
             }
         }
     }
-    
-}
+
+
+        public static void addToShoppingCart(Product product) {
+            ShoppingCart shoppingCart = Customer.getShoppingCart();
+            shoppingCart.addProduct(product);
+            System.out.println("Produkten har lagts till i varukorgen.");
+        }
+
+ }
+
+

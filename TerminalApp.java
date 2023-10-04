@@ -83,8 +83,7 @@ import java.util.Scanner;
                 switch(choice){
                     case "1":
                         System.out.println("Välj produkter att lägga till i varukorgen: ");
-                        List<Product> products = Product.loadProductsFromFile();
-                        Product.showProductsToCustomer(products);
+                        pickAProductToAddToCart();
                         //
                         break;
                     case "2":
@@ -104,5 +103,40 @@ import java.util.Scanner;
             
         }
 
+        public void pickAProductToAddToCart() {
+            Scanner scan = new Scanner(System.in);
+            boolean run = true;
+            List<Product> products = Product.loadProductsFromFile();
 
-}
+            while (run) {
+                System.out.println("Tillgängliga produkter att lägga till i varukorgen:");
+                for (int i = 0; i < products.size(); i++) {
+                    Product product = products.get(i);
+                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                }
+
+                System.out.println("\nQ. Gå tillbaka" +
+                        "\n\nVälj en siffra för att lägga till en produkt i varukorgen."
+                        + "\nVal -");
+                String choice = scan.nextLine();
+
+                if (choice.equalsIgnoreCase("q")) {
+                    run = false;
+                } else if (!Product.onlyDigitInString(choice)) {
+                    System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
+                } else {
+                    int productIndex = Integer.parseInt(choice) - 1;
+                    if (productIndex >= 0 && productIndex < products.size()) {
+                        Product selectedProduct = products.get(productIndex);
+                        Customer.addToShoppingCart(selectedProduct);
+                        System.out.println(selectedProduct.getName() + " har lagts till i din varukorg.");
+                    } else {
+                        System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
+                    }
+                }
+            }
+        }
+
+
+
+    }

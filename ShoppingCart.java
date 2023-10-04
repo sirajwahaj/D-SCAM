@@ -6,6 +6,7 @@ public class ShoppingCart {
 
 
     public ShoppingCart() {
+
         products = new ArrayList<>();
     }
 

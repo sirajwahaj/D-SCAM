@@ -159,6 +159,7 @@ public class Product {
     }
 
     public static List<Product> loadProductsFromFile() {
+        Scanner scan = new Scanner(System.in);
         List<Product> products = new ArrayList<>();
 
         String fileName = "textfile/Product.txt";
@@ -178,9 +179,18 @@ public class Product {
         } catch (IOException e) {
             System.out.println("Problem med att läsa filen: " + e.getMessage());
         }
-
         return products;
     }
+    public static boolean onlyDigitInString(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            if (!Character.isDigit(text.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
+
+
     public static void showProductsToCustomer(List<Product> products) {
         if (products.isEmpty()) {
             System.out.println("Inga produkter tillgängliga.");
