@@ -75,7 +75,7 @@ import java.util.Scanner;
                 String username = userSession.getUsername();
                 System.out.print("\n\nVälkommen - " + username + "\n" +
                         "1. Shoppa \n" +
-                        "2. Korg \n" +
+                        "2. Varukorg \n" +
                         "3. Se kvitton och orderhistorik \n " +
                         "\n\nQ. Logga ut" + 
                         "\nVal - ");
@@ -83,7 +83,9 @@ import java.util.Scanner;
                 switch(choice){
                     case "1":
                         System.out.println("Välj produkter att lägga till i varukorgen: ");
-                        //Gå till "product"
+                        List<Product> products = Product.loadProductsFromFile();
+                        Product.showProductsToCustomer(products);
+                        //
                         break;
                     case "2":
                         Customer.showShoppingCart();

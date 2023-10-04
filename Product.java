@@ -158,4 +158,39 @@ public class Product {
         return removed;
     }
 
+    public static List<Product> loadProductsFromFile() {
+        List<Product> products = new ArrayList<>();
+
+        String fileName = "textfile/Product.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
+            String line;
+            while ((line = reader.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length >= 4) {
+                    String name = parts[0];
+                    String description = parts[1];
+                    double price = Double.parseDouble(parts[2]);
+                    int qty = Integer.parseInt(parts[3]);
+                    Product product = new Product(name, description, price, qty);
+                    products.add(product);
+                }
+            }
+        } catch (IOException e) {
+            System.out.println("Problem med att läsa filen: " + e.getMessage());
+        }
+
+        return products;
+    }
+    public static void showProductsToCustomer(List<Product> products) {
+        if (products.isEmpty()) {
+            System.out.println("Inga produkter tillgängliga.");
+        } else {
+            System.out.println("Tillgängliga produkter:");
+            for (int i = 0; i < products.size(); i++) {
+                Product product = products.get(i);
+                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+            }
+        }
+    }
+
 }
