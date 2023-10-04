@@ -96,7 +96,7 @@ public class CustomerManager {
             }
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("An error occurred while loading customers: " + e.getMessage());
+            System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
         }
 
         return customers;
@@ -110,10 +110,10 @@ public class CustomerManager {
                 writer.write(customer.toString());
                 writer.newLine();
             }
-            System.out.println("Customers saved successfully!");
+            System.out.println("Kundens information uppdaterad");
         } catch (IOException e) {
             e.printStackTrace();
-            System.out.println("An error occurred while saving customers: " + e.getMessage());
+            System.out.println("Något gick fel när kundens uppgifter skulle sparas i textfilen " + e.getMessage());
         }
     }
     public static void listAllCustomers() {
