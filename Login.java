@@ -38,7 +38,7 @@ public class Login {
                         TerminalApp.customerPage();
                     }
                 } else {
-                    System.out.println("\nAnvändaren är ej registrerad.\n");
+                    System.out.println("\nAnvändaren är inte registrerad.\n");
                     TerminalApp.run();
                 }
             }

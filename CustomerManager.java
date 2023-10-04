@@ -69,7 +69,7 @@ public class CustomerManager {
             }
             
 
-            // Save the updated users back to the file
+
            
         } else {
             System.out.println("Kunde inte hitta kund.");
