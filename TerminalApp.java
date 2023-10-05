@@ -128,7 +128,7 @@ import java.util.Scanner;
                     run = false;
                 } else if (!Product.onlyDigitInString(choice)) {
                     System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
-                } else {
+                } else if(!choice.isEmpty()){
                     int productIndex = Integer.parseInt(choice) - 1;
                     if (productIndex >= 0 && productIndex < products.size()) {
                         Product selectedProduct = products.get(productIndex);

@@ -147,18 +147,30 @@ public class Customer {
             System.out.println("Din varukorg innehåller följande produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                System.out.println("\nProdukt: " + product.getName() + "\nQty: " + product.getQty() + "\nPris: " + product.getPrice() + " kr" + "\nTotal: " + product.getQtyPrice());
             }
         }
     }
 
 
-        public static void addToShoppingCart(Product product) {
-            ShoppingCart shoppingCart = Customer.getShoppingCart();
+    
+
+    public static void addToShoppingCart(Product product) {
+        ShoppingCart shoppingCart = Customer.getShoppingCart();
+        List<Product> products = shoppingCart.getProducts();
+
+        for (Product cartProduct : products) {
+            if (cartProduct.getName().equals(product.getName())) {
+
+                cartProduct.setQty(cartProduct.getQty()+1);
+                System.out.println("Kvantiteten av " + cartProduct.getName() + " har ökats.");
+                return;
+                }
+        }
             shoppingCart.addProduct(product);
             System.out.println("Produkten har lagts till i varukorgen.");
-        }
+    }          
 
- }
+}
 
 
