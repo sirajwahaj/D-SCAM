@@ -116,6 +116,7 @@ import java.util.Scanner;
                 for (int i = 0; i < products.size(); i++) {
                     Product product = products.get(i);
                     System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getDescription() + " " + product.getPrice() + " kr");
+                    System.out.println("---------------");
                 }
 
                 System.out.println("\nQ. Gå tillbaka"

@@ -1,1 +1,3 @@
 test,test,20.0,0
+Bajs,Luktar illa,100.0,0
+Mjau,Katt,400.0,1

@@ -147,12 +147,13 @@ public class Customer {
             System.out.println("Din varukorg innehåller följande produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.println((i + 1) + ". " + product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getPrice() + " kr");
+                System.out.println((i + 1) + ". " + product.getQty() + "x "+ product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getQtyPrice() + " kr");
+                System.out.println("---------------");
             }
             double totalSum = 0.0;
 
             for (Product product : products) {
-                totalSum += product.getPrice();
+                totalSum += product.getQtyPrice();
             }
 
             System.out.println("Totalsumma: " + totalSum + " kr");
@@ -161,11 +162,21 @@ public class Customer {
     }
 
 
-        public static void addToShoppingCart(Product product) {
-            ShoppingCart shoppingCart = Customer.getShoppingCart();
-            shoppingCart.addProduct(product);
-            System.out.println("Produkten har lagts till i varukorgen.");
+    public static void addToShoppingCart(Product product) {
+        ShoppingCart shoppingCart = Customer.getShoppingCart();
+        List<Product> products = shoppingCart.getProducts();
+
+        for (Product cartProduct : products) {
+            if (cartProduct.getName().equals(product.getName())) {
+
+                cartProduct.setQty(cartProduct.getQty()+1);
+                System.out.println("Kvantiteten av " + cartProduct.getName() + " har ökats.");
+                return;
+            }
         }
+        shoppingCart.addProduct(product);
+        System.out.println("Produkten har lagts till i varukorgen.");
+    }
 
  }
 
