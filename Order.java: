@@ -1,0 +1,11 @@
+import java.util.Date;
+
+public class Order {
+    private Customer customer;
+    private Product product;
+    private int quantity;
+    private double total;
+    private Date date;
+
+    // Getter och setter
+}
