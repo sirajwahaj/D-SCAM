@@ -54,7 +54,11 @@ import java.util.Scanner;
                         //Visa alla produkter med möjlighet att ta bort/skapa ny
                         break;
                     case "2":
-                        //Visa alla custumers med möjlighet att redigera uppgifter
+                        CustomerManager.listAllCustomers();
+                        System.out.println("\nSkriv in namnet på Kunden du vill redigera");
+                        String customer = scan.nextLine();
+                        CustomerManager.editCustomer(customer);
+                        //Visa alla customers med möjlighet att redigera uppgifter
                         break;
                     case "3":
                         //Visa alla beställningar och transaktioner
