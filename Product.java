@@ -4,11 +4,11 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Product {
-    private double qtyPrice;
     private String name;
     private String description;
     private double price;
     public int qty;
+    private double qtyPrice;
 
     public int getQty() {
         return qty;
@@ -44,7 +44,7 @@ public class Product {
     }
 
     public double getQtyPrice(){
-        qtyPrice = qty * price;
+         qtyPrice = qty * price;
         return qtyPrice;
     }
 
@@ -206,8 +206,7 @@ public class Product {
             System.out.println("Tillgängliga produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.println((i + 1) + ". " + product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getPrice() + " kr");
-                System.out.println("---------------");
+                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
             }
         }
     }

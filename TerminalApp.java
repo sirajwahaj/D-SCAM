@@ -113,13 +113,14 @@ import java.util.Scanner;
             List<Product> products = Product.loadProductsFromFile();
 
             while (run) {
+                System.out.println("Tillgängliga produkter att lägga till i varukorgen:");
                 for (int i = 0; i < products.size(); i++) {
                     Product product = products.get(i);
-                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getDescription() + " " + product.getPrice() + " kr");
-                    System.out.println("---------------");
+                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
                 }
 
-                System.out.println("\nQ. Gå tillbaka"
+                System.out.println("\nQ. Gå tillbaka" +
+                        "\n\nVälj en siffra för att lägga till en produkt i varukorgen."
                         + "\nVal -");
                 String choice = scan.nextLine();
 
@@ -127,7 +128,7 @@ import java.util.Scanner;
                     run = false;
                 } else if (!Product.onlyDigitInString(choice)) {
                     System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
-                } else {
+                } else if(!choice.isEmpty()){
                     int productIndex = Integer.parseInt(choice) - 1;
                     if (productIndex >= 0 && productIndex < products.size()) {
                         Product selectedProduct = products.get(productIndex);
