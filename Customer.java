@@ -157,7 +157,7 @@ public class Customer {
 
             System.out.println("Totalsumma: " + totalSum + " kr");
 
-        }
+        } 
     }
 
 

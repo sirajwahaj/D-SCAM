@@ -1,0 +1,6 @@
+public class Login {
+    public Customer login(String username, String password) {
+        // Implementera inloggningslogik
+        return null;
+    }
+}
