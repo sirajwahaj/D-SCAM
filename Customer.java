@@ -147,8 +147,16 @@ public class Customer {
             System.out.println("Din varukorg innehåller följande produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                System.out.println((i + 1) + ". " + product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getPrice() + " kr");
             }
+            double totalSum = 0.0;
+
+            for (Product product : products) {
+                totalSum += product.getPrice();
+            }
+
+            System.out.println("Totalsumma: " + totalSum + " kr");
+
         }
     }
 

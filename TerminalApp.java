@@ -109,14 +109,12 @@ import java.util.Scanner;
             List<Product> products = Product.loadProductsFromFile();
 
             while (run) {
-                System.out.println("Tillgängliga produkter att lägga till i varukorgen:");
                 for (int i = 0; i < products.size(); i++) {
                     Product product = products.get(i);
-                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                    System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getDescription() + " " + product.getPrice() + " kr");
                 }
 
-                System.out.println("\nQ. Gå tillbaka" +
-                        "\n\nVälj en siffra för att lägga till en produkt i varukorgen."
+                System.out.println("\nQ. Gå tillbaka"
                         + "\nVal -");
                 String choice = scan.nextLine();
 
