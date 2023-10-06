@@ -1,9 +1,4 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
 import java.util.ArrayList;
-import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -136,11 +131,14 @@ import java.util.Scanner;
                     case "2":
                         List<String> shoppingCartStrings = new ArrayList<>();
         
-                        // Konvertera varje produkt i shoppingCart till sträng och lägg till i listan
                         for (Product product : shoppingCart.getProducts()) {
-                            shoppingCartStrings.add(userSession.getUsername()+ "," + product.getName()+ "," + product.getDescription()+ "," + product.getQty()+ "," + product.getQtyPrice());
+                            shoppingCartStrings.add(userSession.getUsername()+ 
+                            "," + product.getName()+ 
+                            "," + product.getDescription()+
+                            "," + product.getQty()+
+                            "," + product.getQtyPrice());
                         }
-                        order.saveCustomersToFile(username,shoppingCartStrings); // Skicka listan av strängar
+                        order.saveCustomersOrderToFile(username,shoppingCartStrings); // Skicka listan av strängar
                         break;
                     case "3":
                         break;
