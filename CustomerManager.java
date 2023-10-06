@@ -31,10 +31,11 @@ public class CustomerManager {
 
             while(run){
                 System.out.println("\n\nUppdatera kund: " + customers.get(indexToUpdate).getName() + "s" + " information" +
-                                "\n1. Användarnamn - " + customers.get(indexToUpdate).getUsername() +
-                                "\n2. Lösenord - " + customers.get(indexToUpdate).getPassword() +
-                                "\n3. Adress - " + customers.get(indexToUpdate).getAddress() +
-                                "\n4. Spara" + 
+                                "\n1. Namn - " + customers.get(indexToUpdate).getName() +
+                                "\n2. Användarnamn - " + customers.get(indexToUpdate).getUsername() +
+                                "\n3. Lösenord - " + customers.get(indexToUpdate).getPassword() +
+                                "\n4. Adress - " + customers.get(indexToUpdate).getAddress() +
+                                "\n5. Spara" +
                                 "\n\nQ. Gå tillbaka" +
                                 "\nVal: ");
                     
@@ -42,28 +43,33 @@ public class CustomerManager {
 
                     switch (choice){
                     case "1":
+                    System.out.print("Förnamn: ");
+                    String newName = scan.nextLine();
+                    customers.get(indexToUpdate).setName(newName);
+                    break;
+                    case "2":
                     System.out.print("Användarnamn: ");
                     String newUsername = scan.nextLine();
                     customers.get(indexToUpdate).setUsername(newUsername);
                     break;
-                    case "2":
+                    case "3":
                     System.out.print("Lösenord: ");
                     String newPassword = scan.nextLine();
                     customers.get(indexToUpdate).setPassword(newPassword);
                     break;
-                    case "3":
+                    case "4":
                     System.out.print("Adress: ");
                     String newAddress = scan.nextLine();
                     customers.get(indexToUpdate).setAddress(newAddress);
                     break;
-                    case "4":
+                    case "5":
                     saveCustomersToFile(customers);
                     break;
                     case "Q":
                     case "q":
                     run = false;
                     break;
-                    default: System.out.println("du måste välja alternativ 1-4");
+                    default: System.out.println("du måste välja alternativ 1-5");
                 }
             
             }
