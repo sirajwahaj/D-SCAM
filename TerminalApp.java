@@ -143,6 +143,7 @@ import java.util.Scanner;
                         order.saveCustomersToFile(username,shoppingCartStrings); // Skicka listan av strängar
                         break;
                     case "3":
+
                         break;
                     case "Q":
                     case "q":
