@@ -1,25 +1,22 @@
-import java.io.FileOutputStream;
-import java.io.IOException;
-import java.io.OutputStreamWriter;
-import java.io.PrintWriter;
+import java.io.*;
+import java.util.*;
 
 public class Order {
     private UserSession userSession = UserSession.getInstance();
-    public Order(){
-       
-    }
-    public void addProductToOrderFile(String product) {
-        
-        String username = userSession.getUsername();
-        
+    String username = userSession.getUsername();
+
+    public void saveCustomersToFile(String username,List<String> orderProductStrings) {
         String fileName = "textfile/Order.txt";
-        try (PrintWriter writer = new PrintWriter(new OutputStreamWriter(new FileOutputStream(fileName, true), "ISO-8859-1"))) {
-            String addProduct = product.toString();
-            writer.print(username + ",");
-            writer.println(addProduct);
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
+            for (String orderProductString : orderProductStrings) {
+                writer.write(orderProductString);
+                writer.newLine();
+            }
+            System.out.println("Kundens information uppdaterad");
         } catch (IOException e) {
-            System.err.println("Problem med att skriva till filen: " + e.getMessage());
+            e.printStackTrace();
+            System.out.println("Något gick fel när kundens uppgifter skulle sparas i textfilen " + e.getMessage());
         }
     }
-
 }

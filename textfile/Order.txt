@@ -1,5 +1,2 @@
-
-a,[]
-a,[test,test,20.0,1, q,e,129.0,1]
-a,[test,test,20.0,1, q,e,129.0,1]
-a,[test,test,20.0,1, q,e,129.0,1]
+a,Lampa,Svart,5,500.0
+a,Matta,Orange,7,903.0

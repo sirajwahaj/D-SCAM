@@ -1,2 +1,2 @@
-test,test,20.0,0
-q,e,129.0,0
+Lampa,Svart,100.0,0
+Matta,Orange,129.0,0

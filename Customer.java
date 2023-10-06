@@ -140,9 +140,6 @@ public class Customer {
     public static void showShoppingCart() {
         ShoppingCart shoppingCart = Customer.getShoppingCart();
         List<Product> products = shoppingCart.getProducts();
-        Order order = new Order(); //under devlop
-        order.addProductToOrderFile(products.toString());//under devlop
-
         if (products.isEmpty()) {
             System.out.println("\n\nDin varukorg är tom.");
         } else {
