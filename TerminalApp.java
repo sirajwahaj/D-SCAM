@@ -17,6 +17,7 @@ import java.util.Scanner;
                 System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
                     "2. Registrera ny kund \n " +
+                    "3. Avsluta programmet" +
                     "\n\nVal - ");
                 String choice = scan.nextLine();
 
@@ -30,6 +31,9 @@ import java.util.Scanner;
                         break;
                     case "2":
                         customer.registerUser();
+                        break;
+                    case "3":
+                        run = false;
                         break;
                     default:
                         System.out.println("Ogiltigt val");
