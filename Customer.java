@@ -140,6 +140,8 @@ public class Customer {
     public static void showShoppingCart() {
         ShoppingCart shoppingCart = Customer.getShoppingCart();
         List<Product> products = shoppingCart.getProducts();
+        boolean run = true;
+
 
         if (products.isEmpty()) {
             System.out.println("Din varukorg är tom.");
@@ -147,7 +149,7 @@ public class Customer {
             System.out.println("Din varukorg innehåller följande produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.println((i + 1) + ". " + product.getQty() + "x " + product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getQtyPrice() + " kr");
+                System.out.println((i + 1) + ". " + product.getQty() + "x " + product.getName() + " - Beskrivning: " + product.getDescription() + " - Pris: " + " " + product.getQtyPrice() + " kr");
             }
             double totalSum = 0.0;
 
@@ -156,8 +158,8 @@ public class Customer {
             }
 
             System.out.println("Totalsumma: " + totalSum + " kr");
+        }
 
-        } 
     }
 
 
