@@ -115,7 +115,7 @@ import java.util.Scanner;
             ShoppingCart shoppingCart = Customer.getShoppingCart();
             Order order = new Order();
             String username = userSession.getUsername();
-        
+
             while (run) {
                 Customer.showShoppingCart();
                 System.out.print("\n\n1. Ta bort varor \n" +
@@ -126,7 +126,7 @@ import java.util.Scanner;
                 String choice = scan.next();
                 switch (choice) {
                     case "1":
-                        // Ta bort varor
+                        removeProductFromCart();
                         break;
                     case "2":
                         List<String> shoppingCartStrings = new ArrayList<>();
@@ -151,7 +151,7 @@ import java.util.Scanner;
                 }
             }
         }
-        
+
 
         public void pickAProductToAddToCart() {
             Scanner scan = new Scanner(System.in);
@@ -187,7 +187,58 @@ import java.util.Scanner;
                 }
             }
         }
-  
+
+        public void removeProductFromCart() {
+            Scanner scan = new Scanner(System.in);
+            boolean run = true;
+            ShoppingCart cart = Customer.getShoppingCart();
+
+            while (run) {
+                List<Product> cartProducts = cart.getProducts();
+
+                if (cartProducts.isEmpty()) {
+                    System.out.println("Din varukorg är tom.");
+                    break;
+                }
+
+                System.out.println("Din varukorg innehåller följande produkter:");
+                for (int i = 0; i < cartProducts.size(); i++) {
+                    Product product = cartProducts.get(i);
+                    System.out.println((i + 1) + ". - " + product.getQty() + "x " + product.getName() + " - Pris: " + product.getQtyPrice() + " kr");
+                }
+
+                System.out.println("\nQ. Gå tillbaka" +
+                        "\n\nVälj en siffra för att ta bort en produkt från varukorgen."
+                        + "\nVal -");
+                String choice = scan.nextLine();
+
+                if (choice.equalsIgnoreCase("q")) {
+                    run = false;
+                } else if (!Product.onlyDigitInString(choice)) {
+                    System.out.println("Du måste välja 1 - " + cartProducts.size() + " eller Q!");
+                } else if (!choice.isEmpty()) {
+                    int productIndex = Integer.parseInt(choice) - 1;
+                    if (productIndex >= 0 && productIndex < cartProducts.size()) {
+                        Product selectedProduct = cartProducts.get(productIndex);
+
+                        if (selectedProduct.getQty() > 1) {
+                            selectedProduct.setQty(selectedProduct.getQty() - 1);
+                            selectedProduct.setQtyPrice(selectedProduct.getQtyPrice() - 1);
+                        } else {
+                            // Ta bort produkten om det finns bara en kvar
+                            cart.removeProduct(selectedProduct);
+                        }
+
+                        System.out.println(selectedProduct.getName() + " har tagits bort från din varukorg.");
+                    } else {
+                        System.out.println("Du måste välja 1 - " + cartProducts.size() + " eller Q!");
+                    }
+                }
+            }
+        }
+
+
+
 
 
     }

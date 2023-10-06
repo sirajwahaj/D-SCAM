@@ -211,4 +211,6 @@ public class Product {
         }
     }
 
+    public void setQtyPrice(double v) {
+    }
 }
