@@ -1,1 +1,2 @@
-
+a,Lampa,Svart,5,500.0
+a,Matta,Orange,7,903.0

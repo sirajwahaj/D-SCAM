@@ -1,3 +1,9 @@
+import java.io.FileOutputStream;
+import java.io.IOException;
+import java.io.OutputStreamWriter;
+import java.io.PrintWriter;
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.List;
 import java.util.Scanner;
 
@@ -108,28 +114,33 @@ import java.util.Scanner;
             
         }
 
-        public void shoppingCartPage(){
+        public void shoppingCartPage() {
             Scanner scan = new Scanner(System.in);
             boolean run = true;
             ShoppingCart shoppingCart = Customer.getShoppingCart();
-            // List<Product> products = shoppingCart.getProducts();
-            // Order order = new Order();
+            Order order = new Order();
+            String username = userSession.getUsername();
         
-            while(run){
-                
+            while (run) {
                 Customer.showShoppingCart();
                 System.out.print("\n\n1. Ta bort varor \n" +
-                        "2. Spara order" + 
+                        "2. Spara order\n" +
                         "3. Avsluta order \n" +
-                        "\n\nQ. Gå tillbaka" + 
+                        "\n\nQ. Gå tillbaka" +
                         "\nVal - ");
                 String choice = scan.next();
-                switch(choice){
+                switch (choice) {
                     case "1":
-                        // ta bort varor
+                        // Ta bort varor
                         break;
                     case "2":
-                        // order.addProductToOrderFile(products.toString());
+                        List<String> shoppingCartStrings = new ArrayList<>();
+        
+                        // Konvertera varje produkt i shoppingCart till sträng och lägg till i listan
+                        for (Product product : shoppingCart.getProducts()) {
+                            shoppingCartStrings.add(userSession.getUsername()+ "," + product.getName()+ "," + product.getDescription()+ "," + product.getQty()+ "," + product.getQtyPrice());
+                        }
+                        order.saveCustomersToFile(username,shoppingCartStrings); // Skicka listan av strängar
                         break;
                     case "3":
                         break;
@@ -140,13 +151,11 @@ import java.util.Scanner;
                     default:
                         System.out.println("Ogiltigt val");
                 }
-                
             }
-            
         }
+        
 
         public void pickAProductToAddToCart() {
-            Order order = new Order();
             Scanner scan = new Scanner(System.in);
             boolean run = true;
             List<Product> products = Product.loadProductsFromFile();
