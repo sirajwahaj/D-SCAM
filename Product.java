@@ -169,6 +169,7 @@ public class Product {
     public static List<Product> loadProductsFromFile() {
         Scanner scan = new Scanner(System.in);
         List<Product> products = new ArrayList<>();
+        
 
         String fileName = "textfile/Product.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {

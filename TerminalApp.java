@@ -3,6 +3,7 @@ import java.util.Scanner;
 
     public class TerminalApp {
         private UserSession userSession = UserSession.getInstance();
+        Order order = new Order();
         Scanner scan = new Scanner(System.in);
         boolean run = true; 
         
@@ -76,6 +77,7 @@ import java.util.Scanner;
         public void customerPage(){
             Scanner scan = new Scanner(System.in);
             while(userSession.isLoggedIn()){
+                Customer.showShoppingCart();
                 String username = userSession.getUsername();
                 System.out.print("\n\nVälkommen - " + username + "\n" +
                         "1. Shoppa \n" +
@@ -88,10 +90,9 @@ import java.util.Scanner;
                     case "1":
                         System.out.println("Välj produkter att lägga till i varukorgen: ");
                         pickAProductToAddToCart();
-                        //
                         break;
                     case "2":
-                        Customer.showShoppingCart();
+                        shoppingCartPage();
                         break;
                     case "3":
                         //Öppna aktuell kunds textfil med information om köp och kvitton
@@ -107,7 +108,45 @@ import java.util.Scanner;
             
         }
 
+        public void shoppingCartPage(){
+            Scanner scan = new Scanner(System.in);
+            boolean run = true;
+            ShoppingCart shoppingCart = Customer.getShoppingCart();
+            // List<Product> products = shoppingCart.getProducts();
+            // Order order = new Order();
+        
+            while(run){
+                
+                Customer.showShoppingCart();
+                System.out.print("\n\n1. Ta bort varor från varukorg \n" +
+                        "2. Spara order \n" +
+                        "3. Avsluta order \n" +
+                        "\n\nQ. Gå tillbaka" + 
+                        "\nVal - ");
+                String choice = scan.next();
+                switch(choice){
+                    case "1":
+                        // ta bort varor
+                        break;
+                    case "2":
+                        // order.addProductToOrderFile(products.toString());
+                        break;
+                    case "3":
+                        break;
+                    case "Q":
+                    case "q":
+                        run = false;
+                        break;
+                    default:
+                        System.out.println("Ogiltigt val");
+                }
+                
+            }
+            
+        }
+
         public void pickAProductToAddToCart() {
+            Order order = new Order();
             Scanner scan = new Scanner(System.in);
             boolean run = true;
             List<Product> products = Product.loadProductsFromFile();
@@ -134,13 +173,14 @@ import java.util.Scanner;
                         Product selectedProduct = products.get(productIndex);
                         Customer.addToShoppingCart(selectedProduct);
                         System.out.println(selectedProduct.getName() + " har lagts till i din varukorg.");
+                        //order.addProductToOrderFile(selectedProduct);
                     } else {
                         System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
                     }
                 }
             }
         }
-
+  
 
 
     }
