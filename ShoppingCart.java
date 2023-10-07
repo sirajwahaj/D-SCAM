@@ -10,6 +10,11 @@ public class ShoppingCart {
         products = new ArrayList<>();
     }
 
+    @Override
+    public String toString() {
+        return "" + products;
+    }
+
     public void addProduct(Product product) {
         products.add(product);
     }
@@ -22,5 +27,8 @@ public class ShoppingCart {
         return products;
     }
 
+    
 
 }
+
+

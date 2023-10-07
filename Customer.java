@@ -140,25 +140,44 @@ public class Customer {
     public static void showShoppingCart() {
         ShoppingCart shoppingCart = Customer.getShoppingCart();
         List<Product> products = shoppingCart.getProducts();
-
         if (products.isEmpty()) {
-            System.out.println("Din varukorg är tom.");
+            System.out.println("\n\nDin varukorg är tom.");
         } else {
-            System.out.println("Din varukorg innehåller följande produkter:");
+            System.out.println("\n\nDin varukorg innehåller  följande produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
-                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+                System.out.println((i + 1) + ". " + product.getQty() + "x " + product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getQtyPrice() + " kr");
             }
-        }
+            double totalSum = 0.0;
+
+            for (Product product : products) {
+                totalSum += product.getQtyPrice();
+            }
+
+            System.out.println("\nTotalsumma: " + totalSum + " kr");
+
+        } 
     }
 
 
-        public static void addToShoppingCart(Product product) {
-            ShoppingCart shoppingCart = Customer.getShoppingCart();
+    
+
+    public static void addToShoppingCart(Product product) {
+        ShoppingCart shoppingCart = Customer.getShoppingCart();
+        List<Product> products = shoppingCart.getProducts();
+
+        for (Product cartProduct : products) {
+            if (cartProduct.getName().equals(product.getName())) {
+
+                cartProduct.setQty(cartProduct.getQty()+1);
+                System.out.println("Kvantiteten av " + cartProduct.getName() + " har ökats.");
+                return;
+                }
+        }
             shoppingCart.addProduct(product);
             System.out.println("Produkten har lagts till i varukorgen.");
-        }
+    }          
 
- }
+}
 
 

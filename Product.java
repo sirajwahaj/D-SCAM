@@ -8,6 +8,7 @@ public class Product {
     private String description;
     private double price;
     public int qty;
+    private double qtyPrice;
 
     public int getQty() {
         return qty;
@@ -42,11 +43,16 @@ public class Product {
         this.price = price;
     }
 
+    public double getQtyPrice(){
+         qtyPrice = qty * price;
+        return qtyPrice;
+    }
+
     public Product(String name, String description, double price, int qty) {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.qty = qty;
+        this.qty = 1;
     }
 
     @Override
@@ -161,8 +167,8 @@ public class Product {
     }
 
     public static List<Product> loadProductsFromFile() {
-        Scanner scan = new Scanner(System.in);
         List<Product> products = new ArrayList<>();
+        
 
         String fileName = "textfile/Product.txt";
         try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
@@ -205,4 +211,6 @@ public class Product {
         }
     }
 
+    public void setQtyPrice(double v) {
+    }
 }
