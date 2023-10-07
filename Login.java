@@ -43,8 +43,8 @@ public class Login {
                 }
             }
             catch (FileNotFoundException e) {
-                e.printStackTrace();
                 System.out.println("Något gick fel vid inloggning." + e.getMessage());
+                System.exit(1);
             }
         }
 
