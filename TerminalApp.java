@@ -1,4 +1,5 @@
 import java.util.ArrayList;
+import java.util.InputMismatchException;
 import java.util.List;
 import java.util.Scanner;
 
@@ -17,22 +18,32 @@ import java.util.Scanner;
                 System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
                     "2. Registrera ny kund \n " +
+                    "3. Avsluta programmet" +
                     "\n\nVal - ");
                 String choice = scan.nextLine();
 
-                switch(choice){
-                    case "1":
-                        System.out.println("Skriv in username");
-                        String user = scan.nextLine();
-                        System.out.println("Skriv in lösenord");
-                        String pass = scan.nextLine();
-                        Login.loginUser(user, pass);
-                        break;
-                    case "2":
-                        customer.registerUser();
-                        break;
-                    default:
-                        System.out.println("Ogiltigt val");
+                try {
+                    switch(choice){
+                        case "1":
+                            System.out.println("Skriv in username");
+                            String user = scan.nextLine();
+                            System.out.println("Skriv in lösenord");
+                            String pass = scan.nextLine();
+                            Login.loginUser(user, pass);
+                            break;
+                        case "2":
+                            customer.registerUser();
+                            break;
+                        case "3":
+                            run = false;
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Ogiltigt val");
+                    }
+                }catch (InputMismatchException e){
+                    System.out.println("Felaktig inmatning. Ange 1 eller 2.");
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -86,23 +97,29 @@ import java.util.Scanner;
                         "\n\nQ. Logga ut" + 
                         "\nVal - ");
                 String choice = scan.next();
-                switch(choice){
-                    case "1":
-                        System.out.println("Välj produkter att lägga till i varukorgen: ");
-                        pickAProductToAddToCart();
-                        break;
-                    case "2":
-                        shoppingCartPage();
-                        break;
-                    case "3":
-                        //Öppna aktuell kunds textfil med information om köp och kvitton
-                        break;
-                    case "Q":
-                    case "q":
-                        userSession.logout();
-                        break;
-                    default:
-                        System.out.println("Ogiltigt val");
+                try {
+                    switch(choice){
+                        case "1":
+                            System.out.println("Välj produkter att lägga till i varukorgen: ");
+                            pickAProductToAddToCart();
+                            break;
+                        case "2":
+                            shoppingCartPage();
+                            break;
+                        case "3":
+                            //Öppna aktuell kunds textfil med information om köp och kvitton
+                            break;
+                        case "Q":
+                        case "q":
+                            userSession.logout();
+                            break;
+                        default:
+                            throw new IllegalArgumentException("Ogiltigt val");
+                    }
+                }catch (InputMismatchException e){
+                    System.out.println("Felaktig inmatning. Ange 1, 2 eller Q");
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
             }
             
@@ -123,6 +140,7 @@ import java.util.Scanner;
                         "\n\nQ. Gå tillbaka" +
                         "\nVal - ");
                 String choice = scan.next();
+            try{
                 switch (choice) {
                     case "1":
                         removeProductFromCart();
@@ -153,7 +171,13 @@ import java.util.Scanner;
                         run = false;
                         break;
                     default:
-                        System.out.println("Ogiltigt val");
+                            throw new IllegalArgumentException("Ogiltigt val");
+                    }
+                }catch (InputMismatchException e){
+                    System.out.println("Felaktig inmatning. Ange 1, 2 eller Q");
+                    scan.next();
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -176,20 +200,24 @@ import java.util.Scanner;
                         + "\nVal -");
                 String choice = scan.nextLine();
 
-                if (choice.equalsIgnoreCase("q")) {
-                    run = false;
-                } else if (!Product.onlyDigitInString(choice)) {
-                    System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
-                } else if(!choice.isEmpty()){
-                    int productIndex = Integer.parseInt(choice) - 1;
-                    if (productIndex >= 0 && productIndex < products.size()) {
-                        Product selectedProduct = products.get(productIndex);
-                        Customer.addToShoppingCart(selectedProduct);
-                        System.out.println(selectedProduct.getName() + " har lagts till i din varukorg.");
-                        //order.addProductToOrderFile(selectedProduct);
-                    } else {
+                try {
+                    if (choice.equalsIgnoreCase("q")) {
+                        run = false;
+                    } else if (!Product.onlyDigitInString(choice)) {
                         System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
+                    } else if(!choice.isEmpty()){
+                        int productIndex = Integer.parseInt(choice) - 1;
+                        if (productIndex >= 0 && productIndex < products.size()) {
+                            Product selectedProduct = products.get(productIndex);
+                            Customer.addToShoppingCart(selectedProduct);
+                            System.out.println(selectedProduct.getName() + " har lagts till i din varukorg.");
+                            //order.addProductToOrderFile(selectedProduct);
+                        } else {
+                            throw new IllegalArgumentException("Du måste välja 1 - " + products.size() + " eller Q!");
+                        }
                     }
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
             }
         }
@@ -216,29 +244,35 @@ import java.util.Scanner;
                 System.out.println("\nQ. Gå tillbaka" +
                         "\n\nVälj en siffra för att ta bort en produkt från varukorgen."
                         + "\nVal -");
-                String choice = scan.nextLine();
 
-                if (choice.equalsIgnoreCase("q")) {
-                    run = false;
-                } else if (!Product.onlyDigitInString(choice)) {
-                    System.out.println("Du måste välja 1 - " + cartProducts.size() + " eller Q!");
-                } else if (!choice.isEmpty()) {
-                    int productIndex = Integer.parseInt(choice) - 1;
-                    if (productIndex >= 0 && productIndex < cartProducts.size()) {
-                        Product selectedProduct = cartProducts.get(productIndex);
-
-                        if (selectedProduct.getQty() > 1) {
-                            selectedProduct.setQty(selectedProduct.getQty() - 1);
-                            selectedProduct.setQtyPrice(selectedProduct.getQtyPrice() - 1);
-                        } else {
-                            // Ta bort produkten om det finns bara en kvar
-                            cart.removeProduct(selectedProduct);
-                        }
-
-                        System.out.println(selectedProduct.getName() + " har tagits bort från din varukorg.");
-                    } else {
+                try {
+                    String choice = scan.nextLine();
+                    if (choice.equalsIgnoreCase("q")) {
+                        run = false;
+                    } else if (!Product.onlyDigitInString(choice)) {
                         System.out.println("Du måste välja 1 - " + cartProducts.size() + " eller Q!");
+                    } else if (!choice.isEmpty()) {
+                        int productIndex = Integer.parseInt(choice) - 1;
+                        if (productIndex >= 0 && productIndex < cartProducts.size()) {
+                            Product selectedProduct = cartProducts.get(productIndex);
+
+                            if (selectedProduct.getQty() > 1) {
+                                selectedProduct.setQty(selectedProduct.getQty() - 1);
+                                selectedProduct.setQtyPrice(selectedProduct.getQtyPrice() - 1);
+                            } else {
+                                // Ta bort produkten om det finns bara en kvar
+                                cart.removeProduct(selectedProduct);
+                            }
+
+                            System.out.println(selectedProduct.getName() + " har tagits bort från din varukorg.");
+                        } else {
+                            throw new IllegalArgumentException("Du måste välja 1 - " + cartProducts.size() + " eller Q!");
+                        }
                     }
+                }catch (NumberFormatException e){
+                    System.out.println("Felaktig input. Var vänlig skriv in ett giltigt nummer.");
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
             }
         }
