@@ -140,7 +140,7 @@ public class Customer {
     public static void showShoppingCart() {
         ShoppingCart shoppingCart = Customer.getShoppingCart();
         List<Product> products = shoppingCart.getProducts();
-        if (products.isEmpty()) {
+        if (products.isEmpty()) {   
             System.out.println("\n\nDin varukorg är tom.");
         } else {
             System.out.println("\n\nDin varukorg innehåller  följande produkter:");

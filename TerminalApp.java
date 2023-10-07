@@ -107,7 +107,7 @@ import java.util.Scanner;
                             shoppingCartPage();
                             break;
                         case "3":
-                            //Öppna aktuell kunds textfil med information om köp och kvitton
+                           
                             break;
                         case "Q":
                         case "q":
@@ -129,14 +129,15 @@ import java.util.Scanner;
             Scanner scan = new Scanner(System.in);
             boolean run = true;
             ShoppingCart shoppingCart = Customer.getShoppingCart();
-            Order order = new Order();
+            ShoppingCart shoppingCartOrder = new ShoppingCart();
             String username = userSession.getUsername();
 
             while (run) {
+                
                 Customer.showShoppingCart();
                 System.out.print("\n\n1. Ta bort varor \n" +
                         "2. Spara order\n" +
-                        "3. Avsluta order \n" + // jag har gjort en load order här ifall ni vill bygga på för att sedan kunna spara. men det är upp till er.
+                        "3. Beställ order \n" +
                         "\n\nQ. Gå tillbaka" +
                         "\nVal - ");
                 String choice = scan.next();
@@ -157,14 +158,15 @@ import java.util.Scanner;
                                 "," + product.getQty()+
                                 "," + product.getQtyPrice());
                             }
-                            order.saveCustomersOrderToFile(shoppingCartStrings);
+                            shoppingCartOrder.saveCustomersOrderToFile(shoppingCartStrings);
                         } else {
                             System.out.println("Det finns inget att spara");
                         }
                         break;
                     case "3":
-                        
-                        //order.loadCustomersOrder();
+                          Order.AvslutaOrder();
+                        // <----------  LÄGG DIN METODER HÄR! 
+                            //Öppna aktuell kunds textfil med information om köp och kvitton
                         break;
                     case "Q":
                     case "q":
