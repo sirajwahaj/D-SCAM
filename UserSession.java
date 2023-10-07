@@ -24,12 +24,19 @@ public class UserSession {
     }
 
     public void logout(){
-        System.out.println("vill du logga ut? Yes/no");
-        String answer = scan.nextLine();
-        if(answer.equalsIgnoreCase("Yes")){
-        this.username = null;
-        this.isLoggedIn = false;
-        System.out.println("Du har blivit utloggad.");
+        try {
+            System.out.println("vill du logga ut? Yes/no");
+
+            String answer = scan.nextLine();
+            if(answer.equalsIgnoreCase("Yes")){
+                this.username = null;
+                this.isLoggedIn = false;
+                System.out.println("Du har blivit utloggad.");
+            }else throw new IllegalArgumentException("ogiltig inmatning");
+        }catch (IllegalArgumentException e) {
+            System.out.println(e.getMessage());
+        }catch (Exception e){
+            System.out.println("Något gick fel " + e.getMessage());
         }
 
         
