@@ -78,7 +78,6 @@ import java.util.Scanner;
         public void customerPage(){
             Scanner scan = new Scanner(System.in);
             while(userSession.isLoggedIn()){
-                Customer.showShoppingCart();
                 String username = userSession.getUsername();
                 System.out.print("\n\nVälkommen - " + username + "\n" +
                         "1. Shoppa \n" +
@@ -120,7 +119,7 @@ import java.util.Scanner;
                 Customer.showShoppingCart();
                 System.out.print("\n\n1. Ta bort varor \n" +
                         "2. Spara order\n" +
-                        "3. Avsluta order \n" +
+                        "3. Avsluta order \n" + // jag har gjort en load order här ifall ni vill bygga på för att sedan kunna spara. men det är upp till er.
                         "\n\nQ. Gå tillbaka" +
                         "\nVal - ");
                 String choice = scan.next();
@@ -129,18 +128,25 @@ import java.util.Scanner;
                         removeProductFromCart();
                         break;
                     case "2":
-                        List<String> shoppingCartStrings = new ArrayList<>();
-        
-                        for (Product product : shoppingCart.getProducts()) {
-                            shoppingCartStrings.add(userSession.getUsername()+ 
-                            "," + product.getName()+ 
-                            "," + product.getDescription()+
-                            "," + product.getQty()+
-                            "," + product.getQtyPrice());
+                        List<Product> productsInCart = shoppingCart.getProducts();
+
+                        if(!productsInCart.isEmpty()){
+                            List<String> shoppingCartStrings = new ArrayList<>();
+                        
+                            for (Product product : shoppingCart.getProducts()) {
+                                shoppingCartStrings.add(product.getName()+ 
+                                "," + product.getDescription()+
+                                "," + product.getQty()+
+                                "," + product.getQtyPrice());
+                            }
+                            order.saveCustomersOrderToFile(shoppingCartStrings);
+                        } else {
+                            System.out.println("Det finns inget att spara");
                         }
-                        order.saveCustomersOrderToFile(username,shoppingCartStrings); // Skicka listan av strängar
                         break;
                     case "3":
+                        
+                        //order.loadCustomersOrder();
                         break;
                     case "Q":
                     case "q":
