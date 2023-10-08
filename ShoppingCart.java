@@ -6,6 +6,10 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
+import java.time.LocalDate;
+import java.time.LocalTime;
+import java.time.format.DateTimeFormatter;
+
 
 public class ShoppingCart {
     private UserSession userSession = UserSession.getInstance();
@@ -130,6 +134,10 @@ public class ShoppingCart {
         }
     }
     public void savePurchaseToFile() {
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
         String username = userSession.getUsername();
         String fileName = "textfile/Order.txt";
 
@@ -139,6 +147,8 @@ public class ShoppingCart {
             if (!productsInCart.isEmpty()) {
                 for (Product product : productsInCart) {
                     String orderProductString = username + "," +
+                            localDate + "," +
+                            localTime.format(timeFormatter) + "," +
                             product.getName() + "," +
                             product.getDescription() + "," +
                             product.getQty() + "," +

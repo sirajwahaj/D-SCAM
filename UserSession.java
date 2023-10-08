@@ -50,3 +50,4 @@ public class UserSession {
         return isLoggedIn;
     }
 }
+
