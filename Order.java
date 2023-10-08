@@ -52,7 +52,4 @@ public class Order {
     public Order(){
     }
 
-    public static void AvslutaOrder(){
-        // MOTODEN!
-    }
 }

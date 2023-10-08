@@ -164,7 +164,7 @@ import java.util.Scanner;
                         }
                         break;
                     case "3":
-                          Order.AvslutaOrder();
+                        shoppingCart.savePurchaseToFile();
                         // <----------  LÄGG DIN METODER HÄR! 
                             //Öppna aktuell kunds textfil med information om köp och kvitton
                         break;

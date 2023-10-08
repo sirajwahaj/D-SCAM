@@ -129,6 +129,33 @@ public class ShoppingCart {
             System.out.println("Något gick fel när du skulle spara ordern" + e.getMessage());
         }
     }
+    public void savePurchaseToFile() {
+        String username = userSession.getUsername();
+        String fileName = "textfile/Order.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            List<Product> productsInCart = products;
+
+            if (!productsInCart.isEmpty()) {
+                for (Product product : productsInCart) {
+                    String orderProductString = username + "," +
+                            product.getName() + "," +
+                            product.getDescription() + "," +
+                            product.getQty() + "," +
+                            product.getQtyPrice();
+                    writer.write(orderProductString);
+                    writer.newLine();
+                }
+
+                System.out.println("Din order är sparad");
+            } else {
+                System.out.println("Det finns inget att spara");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
+        }
+    }
 }
 
 

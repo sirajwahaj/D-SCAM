@@ -1,2 +1,4 @@
-a,Lampa,Svart,5,500.0
-a,Matta,Orange,7,903.0
+a,Lampa,Svart,2,200.0
+a,Matta,Orange,2,258.0
+User,Lampa,Svart,4,400.0
+User,Matta,Orange,4,516.0
