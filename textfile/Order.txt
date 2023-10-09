@@ -1,5 +1,12 @@
-a,Lampa,Svart,2,200.0
-a,Matta,Orange,2,258.0
-User,Lampa,Svart,4,400.0
-User,Matta,Orange,4,516.0
-
+a,2023-10-09,13:40,Lampa,Svart,2,200.0
+a,2023-10-09,13:40,Matta,Orange,2,258.0
+-
+a,2023-10-09,13:41,Lampa,Svart,2,200.0
+a,2023-10-09,13:41,Matta,Orange,2,258.0
+-
+a,2023-10-09,14:34,Lampa,Svart,2,200.0
+a,2023-10-09,14:34,Matta,Orange,2,258.0
+-
+a,2023-10-09,14:42,Lampa,Svart,2,200.0
+a,2023-10-09,14:42,Matta,Orange,2,258.0
+-

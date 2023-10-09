@@ -1,2 +1,5 @@
-Lampa,Svart,4,400.0
-Matta,Orange,3,387.0
+Lampa,Svart,2,200.0
+Matta,Orange,2,258.0
+a,2023-10-09,14:42,Lampa,Svart,2,200.0
+a,2023-10-09,14:42,Matta,Orange,2,258.0
+-

@@ -2,54 +2,103 @@ import java.io.*;
 import java.util.*;
 
 public class Order {
+
     private UserSession userSession = UserSession.getInstance();
-    String username = userSession.getUsername();
-    Date todayDate = new Date();
+    String username;
+    String date;
+    String time;
+    String Product;
+    String description;
+    int qty;
+    double price;
+    int orderNum;
+    private int orderNumberCounter = 1;
 
-    private int orderNumber;
-    private List<Product> products;
-    private double totalPrice;
 
-    public Order(int orderNumber) {
-        this.orderNumber = orderNumber;
-        this.products = new ArrayList<>();
-        this.totalPrice = 0.0;
-    }
-
-    public int getOrderNumber() {
-        return orderNumber;
-    }
-
-    public List<Product> getProducts() {
-        return products;
-    }
-
-    public void addProduct(Product product) {
-        products.add(product);
-        totalPrice += product.getPrice();
-    }
-
-    public void removeProduct(Product product) {
-        products.remove(product);
-        totalPrice -= product.getPrice();
-    }
-
-    public double getTotalPrice() {
-        return totalPrice;
-    }
 
     @Override
     public String toString() {
-        StringBuilder sb = new StringBuilder();
-        sb.append("Order Number: ").append(orderNumber).append("\n");
-        sb.append("Products:\n");
-        for (Product product : products) {
-            sb.append("- ").append(product.getName()).append(": ").append(product.getPrice()).append("\n");
-        }
-        sb.append("Total Price: ").append(totalPrice);
-        return sb.toString();
+        return "Order{" +
+                "username='" + username + '\'' +
+                ", date='" + date + '\'' +
+                ", time='" + time + '\'' +
+                ", Product='" + Product + '\'' +
+                ", description='" + description + '\'' +
+                ", qty=" + qty +
+                ", price=" + price +
+                '}';
     }
-    public Order(){
+
+    public String getUsername() {
+        return username;
     }
+
+    public void setUsername(String username) {
+        this.username = username;
+    }
+
+    public String getDate() {
+        return date;
+    }
+
+    public void setDate(String date) {
+        this.date = date;
+    }
+
+    public String getTime() {
+        return time;
+    }
+
+    public void setTime(String time) {
+        this.time = time;
+    }
+
+    public String getProduct() {
+        return Product;
+    }
+
+    public void setProduct(String product) {
+        Product = product;
+    }
+
+    public String getDescription() {
+        return description;
+    }
+
+    public void setDescription(String description) {
+        this.description = description;
+    }
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
+    public double getPrice() {
+        return price;
+    }
+
+    public void setPrice(double price) {
+        this.price = price;
+    }
+
+    public int getOrderNum() {
+        return orderNum;
+    }
+
+    public Order(String username, String date, String time, String product, String description, int qty, double price) {
+        this.orderNum = orderNumberCounter++;
+        this.username = username;
+        this.date = date;
+        this.time = time;
+        this.Product = product;
+        this.description = description;
+        this.qty = qty;
+        this.price = price;
+    }
+
 
 }
