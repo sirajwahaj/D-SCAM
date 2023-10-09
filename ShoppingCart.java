@@ -217,7 +217,7 @@ public class ShoppingCart {
                     writer.write(orderProductString);
                     writer.newLine();
                     writer.flush();
-
+                
                 }
                 writer.write(newLine);
                 writer.newLine();

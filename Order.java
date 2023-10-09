@@ -2,7 +2,6 @@ import java.io.*;
 import java.util.*;
 
 public class Order {
-
     private UserSession userSession = UserSession.getInstance();
     String username;
     String date;
@@ -13,7 +12,18 @@ public class Order {
     double price;
     int orderNum;
     private int orderNumberCounter = 1;
+    private List<Product> products;
 
+    public Order(String username, String date, String time, String product, String description, int qty, double price) {
+        this.orderNum = orderNumberCounter++;
+        this.username = username;
+        this.date = date;
+        this.time = time;
+        this.Product = product;
+        this.description = description;
+        this.qty = qty;
+        this.price = price;
+    }
 
 
     @Override
@@ -28,6 +38,7 @@ public class Order {
                 ", price=" + price +
                 '}';
     }
+    
 
     public String getUsername() {
         return username;
@@ -86,19 +97,13 @@ public class Order {
     }
 
     public int getOrderNum() {
+        
         return orderNum;
     }
-
-    public Order(String username, String date, String time, String product, String description, int qty, double price) {
-        this.orderNum = orderNumberCounter++;
-        this.username = username;
-        this.date = date;
-        this.time = time;
-        this.Product = product;
-        this.description = description;
-        this.qty = qty;
-        this.price = price;
+    public List<Product> getProducts() {
+        return products;
     }
 
+    
 
 }
