@@ -1,73 +1,66 @@
 import java.io.*;
+import java.time.LocalDate;
+import java.time.LocalTime;
 import java.util.*;
 
 public class Order {
 
     private UserSession userSession = UserSession.getInstance();
-    int orderNum;
-    String username;
-    String date;
-    String time;
-
-    @Override
-    public String toString() {
-        return "Order{" +
-                "orderNum=" + orderNum +
-                ", username='" + username + '\'' +
-                ", date='" + date + '\'' +
-                ", time='" + time + '\'' +
-                ", products=" + products +
-                '}';
-    }
-
-    private int orderNumberCounter = 1;
+    private int orderNum;
+    private String username;
+    private String localDate;
+    private String localTime;
+    private static int orderNumberCounter = 1;
     private List<Product> products;
-
-
-
-    public Order(String username, String date, String time, List<Product> products) {
+    
+    public Order(String username, String localDate, String localTime, List<Product> products) {
         this.orderNum = orderNumberCounter++;
         this.username = username;
-        this.date = date;
-        this.time = time;
+        this.localDate = localDate;
+        this.localTime = localTime;
         this.products = products;
 
     }
+
+    public UserSession getUserSession() {
+        return userSession;
+    }
+
+
 
     public int getOrderNum() {
         return orderNum;
     }
 
-    public void setOrderNum(int orderNum) {
-        this.orderNum = orderNum;
-    }
+
 
     public String getUsername() {
         return username;
     }
 
-    public void setUsername(String username) {
-        this.username = username;
+
+
+    public String getLocalDate() {
+        return localDate;
     }
 
-    public String getDate() {
-        return date;
+
+
+    public String getLocalTime() {
+        return localTime;
     }
 
-    public void setDate(String date) {
-        this.date = date;
+
+
+    public int getOrderNumberCounter() {
+        return orderNumberCounter;
     }
 
-    public String getTime() {
-        return time;
-    }
 
-    public void setTime(String time) {
-        this.time = time;
-    }
+
     public List<Product> getProducts() {
         return products;
     }
 
 
-    }
+}

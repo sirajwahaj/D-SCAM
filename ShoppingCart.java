@@ -236,30 +236,30 @@ public class ShoppingCart {
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
         DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-
+    
         String username = userSession.getUsername();
         String fileName = "textfile/OrderTest.txt";
         String newLine = "-";
-
+    
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
             List<Product> productsInCart = products;
-
+            String dateString = localDate.toString();
             if (!productsInCart.isEmpty()) {
+                Order order = new Order(username, dateString, localTime.format(timeFormatter), products);
+    
+                writer.write(order.getOrderNum());
+                writer.newLine();
                 for (Product product : productsInCart) {
-                    String user = username;
-                    String date = localDate;
-                    String time = localTime;
-                    Order order = new Order(user, date, time, products);
-
-                    writer.write(order.getOrderNum());
+                    writer.write("Produktnamn: " + product.getName());
                     writer.newLine();
-                    writer.flush();
-
+                    writer.write("Pris: " + product.getPrice());
+                    writer.newLine();
+                    // Här kan du lägga till fler detaljer om produkten om så behövs
                 }
                 writer.write(newLine);
                 writer.newLine();
-                writer.close();
+                writer.flush();
+    
                 System.out.println("Din order är sparad");
             } else {
                 System.out.println("Det finns inget att spara");
@@ -269,6 +269,7 @@ public class ShoppingCart {
             System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
         }
     }
+    
     public void saveIndividualPurchaseToFile() {
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();

@@ -166,7 +166,7 @@ import java.util.Scanner;
                         }
                         break;
                     case "3":
-                        shoppingCart.saveIndividualPurchaseToFile();
+                        //shoppingCart.saveIndividualPurchaseToFile();
                         shoppingCart.savePurchaseToFile2();
                         System.out.println("Din beställning är bekräftad!");
                         // <----------  LÄGG DIN METODER HÄR! 
