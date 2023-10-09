@@ -167,7 +167,7 @@ import java.util.Scanner;
                         break;
                     case "3":
                         shoppingCart.saveIndividualPurchaseToFile();
-                        shoppingCart.savePurchaseToFile();
+                        shoppingCart.savePurchaseToFile2();
                         System.out.println("Din beställning är bekräftad!");
                         // <----------  LÄGG DIN METODER HÄR! 
                             //Öppna aktuell kunds textfil med information om köp och kvitton

@@ -231,6 +231,44 @@ public class ShoppingCart {
             System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
         }
     }
+
+    public void savePurchaseToFile2() {
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+
+        String username = userSession.getUsername();
+        String fileName = "textfile/OrderTest.txt";
+        String newLine = "-";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            List<Product> productsInCart = products;
+
+            if (!productsInCart.isEmpty()) {
+                for (Product product : productsInCart) {
+                    String user = username;
+                    String date = localDate;
+                    String time = localTime;
+                    Order order = new Order(user, date, time, products);
+
+                    writer.write(order.getOrderNum());
+                    writer.newLine();
+                    writer.flush();
+
+                }
+                writer.write(newLine);
+                writer.newLine();
+                writer.close();
+                System.out.println("Din order är sparad");
+            } else {
+                System.out.println("Det finns inget att spara");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
+        }
+    }
     public void saveIndividualPurchaseToFile() {
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
