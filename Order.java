@@ -6,12 +6,12 @@ public class Order {
     String username;
     String date;
     String time;
-    String Product;
+    String product;
     String description;
     int qty;
     double price;
     int orderNum;
-    private int orderNumberCounter = 1;
+    private static int orderNumberCounter = 1;
     private List<Product> products;
 
     public Order(String username, String date, String time, String product, String description, int qty, double price) {
@@ -19,10 +19,11 @@ public class Order {
         this.username = username;
         this.date = date;
         this.time = time;
-        this.Product = product;
         this.description = description;
         this.qty = qty;
         this.price = price;
+        this.product = product;
+        this.products = new ArrayList<>();
     }
 
 
@@ -32,7 +33,7 @@ public class Order {
                 "username='" + username + '\'' +
                 ", date='" + date + '\'' +
                 ", time='" + time + '\'' +
-                ", Product='" + Product + '\'' +
+                ", Product='" + product + '\'' +
                 ", description='" + description + '\'' +
                 ", qty=" + qty +
                 ", price=" + price +
@@ -65,11 +66,11 @@ public class Order {
     }
 
     public String getProduct() {
-        return Product;
+        return product;
     }
 
-    public void setProduct(String product) {
-        Product = product;
+    public void setProduct(String products) {
+        products = product;
     }
 
     public String getDescription() {
@@ -97,13 +98,17 @@ public class Order {
     }
 
     public int getOrderNum() {
-        
         return orderNum;
     }
     public List<Product> getProducts() {
         return products;
     }
 
+    public void addProduct(Product product) {
+        if (product != null) {
+            products.add(product);
+        }
+    }
     
 
 }
