@@ -1,9 +1,5 @@
-<<<<<<< HEAD
-public class Main{
-=======
 import java.util.Scanner;
-public class main{
->>>>>>> main
+public class Main{
     public static void main(String[] arg) {
             
            TerminalApp App = new TerminalApp();

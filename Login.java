@@ -3,6 +3,7 @@ import java.io.FileNotFoundException;
 import java.util.Scanner;
 
 public class Login {
+    private UserSession userSession = UserSession.getInstance();
     TerminalApp TerminalApp = new TerminalApp();
     String username;
 
@@ -30,9 +31,11 @@ public class Login {
                 } 
                 if (userFound) { // Har lagt denna if stats utanför loopen då den annars bara loopar första linjen i accounts och inte söker alla rader i accounts.
                     if (isAdmin) {
-                        TerminalApp.adminPage(username);
+                        userSession.login(username);
+                        TerminalApp.adminPage();
                     } else {
-                        TerminalApp.customerPage(username);
+                        userSession.login(username);
+                        TerminalApp.customerPage();
                     }
                 } else {
                     System.out.println("\nAnvändaren är inte registrerad.\n");
@@ -40,8 +43,8 @@ public class Login {
                 }
             }
             catch (FileNotFoundException e) {
-                e.printStackTrace();
                 System.out.println("Något gick fel vid inloggning." + e.getMessage());
+                System.exit(1);
             }
         }
 

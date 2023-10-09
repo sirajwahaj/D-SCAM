@@ -1,8 +1,7 @@
-Kalle,Alli,Sova,Naj,admin=true
-User,User,Christoffer,Rorsjogatan 7
-DLA,,,
-dkwoadka,,,
-dawkd,,,
-Meow,,,Kalle,,,
-,,,
-lddka,dkakda,dkakd,kdakd
+Kalle,Alli,Sova,admin=true
+User,User,Kalle,Rorsjogatan
+DLA,dkda,dawd,JabbadabbaDO
+Bertil2,Olle,Bertil,Hallsta
+Bruce,dkakda,dkakd,kdakd
+a,a,a,a
+Olof,Meow,Olle,Rorsjogatan

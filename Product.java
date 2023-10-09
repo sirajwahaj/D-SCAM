@@ -7,6 +7,17 @@ public class Product {
     private String name;
     private String description;
     private double price;
+    public int qty;
+    private double qtyPrice;
+
+    public int getQty() {
+        return qty;
+    }
+
+    public void setQty(int qty) {
+        this.qty = qty;
+    }
+
 
     public String getName() {
         return name;
@@ -32,15 +43,21 @@ public class Product {
         this.price = price;
     }
 
-    public Product(String name, String description, double price) {
+    public double getQtyPrice(){
+         qtyPrice = qty * price;
+        return qtyPrice;
+    }
+
+    public Product(String name, String description, double price, int qty) {
         this.name = name;
         this.description = description;
         this.price = price;
+        this.qty = 1;
     }
 
     @Override
     public String toString() {
-        return name + "," + description + "," + price;
+        return name + "," + description + "," + price + "," + qty;
     }
 
     public static void AddProduct(){
@@ -48,10 +65,10 @@ public class Product {
         String name = "";
         String description = "";
         double price = 0;
+        int qty = 0;
         boolean run = true;
 
-        while (run) { 
-            displayAllProducts();
+        while (run) {
             System.out.println("Hantera Produkter:");
             System.out.println("1. Lägg till ny produkt");
             System.out.println("2. Ta bort produkt");
@@ -76,12 +93,14 @@ public class Product {
                         scan.nextLine();
                         continue;
                     }
-                    Product product = new Product(name, description, price);
+                    Product product = new Product(name, description, price, qty);
                     addProductToFile(product);
                     System.out.println("Produkten har lagts till i listan!");
                     break;
                 case "2":
-                    // Tar bort nurvarande produkter
+                    // Tar bort nurvarande produkter även vissar produkterna som finns
+                    List<Product> products = loadProductsFromFile();
+                    showProductsToCustomer(products);
                     System.out.println("Ta bort produkt:");
                     System.out.print("Skriv in namnet på produkten du vill plocka bort: ");
                     String productToRemove = scan.nextLine();
@@ -100,7 +119,7 @@ public class Product {
         }
         if (!run) {
             TerminalApp terminalApp = new TerminalApp();
-            terminalApp.adminPage(terminalApp.username);
+            terminalApp.adminPage();
 
         }
     }
@@ -147,33 +166,51 @@ public class Product {
         return removed;
     }
 
-    public static void displayAllProducts() {
-        List<Product> products = getAllProductsFromTextfile();
-        System.out.println("\n\nAlla produkter:");
-        for (Product product : products) {
-            System.out.println("Namn: " + product.getName() + "Beskrivning: " + product.getDescription() + "Pris: " + product.getPrice() + "kr");
-        }
-    }
+    public static List<Product> loadProductsFromFile() {
+        List<Product> products = new ArrayList<>();
+        
 
-    public static List<Product> getAllProductsFromTextfile() {
-        List<Product> productList = new ArrayList<>();
-
-        try (BufferedReader reader = new BufferedReader(new FileReader("textfile/Product.txt"))) {
+        String fileName = "textfile/Product.txt";
+        try (BufferedReader reader = new BufferedReader(new FileReader(fileName))) {
             String line;
             while ((line = reader.readLine()) != null) {
                 String[] parts = line.split(",");
-                if (parts.length == 3) {
+                if (parts.length >= 4) {
                     String name = parts[0];
                     String description = parts[1];
                     double price = Double.parseDouble(parts[2]);
-                    Product product = new Product(name, description, price);
-                    productList.add(product);
+                    int qty = Integer.parseInt(parts[3]);
+                    Product product = new Product(name, description, price, qty);
+                    products.add(product);
                 }
             }
         } catch (IOException e) {
-            System.err.println("Problem med att läsa filen: " + e.getMessage());
+            System.out.println("Problem med att läsa filen: " + e.getMessage());
         }
+        return products;
+    }
+    public static boolean onlyDigitInString(String text) {
+        for (int i = 0; i < text.length(); i++) {
+            if (!Character.isDigit(text.charAt(i))) {
+                return false;
+            }
+        }
+        return true;
+    }
 
-        return productList;
+
+    public static void showProductsToCustomer(List<Product> products) {
+        if (products.isEmpty()) {
+            System.out.println("Inga produkter tillgängliga.");
+        } else {
+            System.out.println("Tillgängliga produkter:");
+            for (int i = 0; i < products.size(); i++) {
+                Product product = products.get(i);
+                System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");
+            }
+        }
+    }
+
+    public void setQtyPrice(double v) {
     }
 }

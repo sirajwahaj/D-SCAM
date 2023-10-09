@@ -1,2 +1,2 @@
-tr�ja,dad,13.0
-dwk,dka,2.0
+Lampa,Svart,100.0,0
+Matta,Orange,129.0,0
