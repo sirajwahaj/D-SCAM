@@ -175,7 +175,7 @@ public class Customer {
                 }
         }
             shoppingCart.addProduct(product);
-            System.out.println("Produkten har lagts till i varukorgen.");
+
     }          
 
 }
