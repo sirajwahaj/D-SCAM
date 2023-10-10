@@ -1,5 +1,5 @@
 Jordan,Vit,100.0,0
-Sockar,Small,129.0,0
+Sockar,Vit,129.0,0
 Jacka,Vit,400.0,0
 Hatt,Vit,600.0,0
 Kjol,Svart,1000.0,0

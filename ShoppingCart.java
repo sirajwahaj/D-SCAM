@@ -52,7 +52,7 @@ public class ShoppingCart {
                 System.out.println("Produkt: " + product.getName());
                 System.out.println("Produktbeskrivning: " + product.getDescription());
                 System.out.println("Antal: " + product.getQty());
-                System.out.println("Pris: " + product.getQtyPrice()+ "\n");//Lägg till produktens pris
+                System.out.println("Pris: " + product.getPrice()+ "\n");//Lägg till produktens pris
                 }
 
                 double totalPrice = 0.0;
@@ -129,7 +129,7 @@ public class ShoppingCart {
                 System.out.println("Produkt: " + product.getName());
                 System.out.println("Produktbeskrivning: " + product.getDescription());
                 System.out.println("Antal: " + product.getQty());
-                System.out.println("Pris: " + product.getQtyPrice()+ "\n");
+                System.out.println("Pris: " + product.getPrice()+ "\n");
                 }
 
                 double totalPrice = 0.0;

@@ -96,6 +96,7 @@ public class Product {
                         price = Double.parseDouble(priceInput);
                     } catch (NumberFormatException e) {
                         System.out.println("Ogiltigt pris format.");
+                        System.out.println("Klicka enter för att börja om!");
                         scan.nextLine();
                         continue;
                     }
