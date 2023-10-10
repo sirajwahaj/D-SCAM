@@ -98,7 +98,7 @@ public class Product {
                     System.out.println("Produkten har lagts till i listan!");
                     break;
                 case "2":
-                    // Tar bort nurvarande produkter även vissar produkterna som finns
+                    // Tar bort nurvarande produkter Vissar även produkterna som finns med i listan
                     List<Product> products = loadProductsFromFile();
                     showProductsToCustomer(products);
                     System.out.println("Ta bort produkt:");

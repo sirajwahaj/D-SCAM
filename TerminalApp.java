@@ -5,7 +5,7 @@ import java.util.Scanner;
 
     public class TerminalApp {
         private UserSession userSession = UserSession.getInstance();
-        Order order = new Order();
+
         Scanner scan = new Scanner(System.in);
         boolean run = true; 
         
@@ -74,7 +74,8 @@ import java.util.Scanner;
                         //Visa alla customers med möjlighet att redigera uppgifter
                         break;
                     case "3":
-                        //Visa alla beställningar och transaktioner
+                        ShoppingCart shoppingCart = new ShoppingCart();
+                        shoppingCart.loadCustomersOrder();
                         break;
                     case "Q":
                     case "q":
@@ -107,7 +108,8 @@ import java.util.Scanner;
                             shoppingCartPage();
                             break;
                         case "3":
-                           
+                            ShoppingCart shoppingCart = new ShoppingCart();
+                            shoppingCart.loadIndividualCustomersOrder();
                             break;
                         case "Q":
                         case "q":
@@ -164,7 +166,9 @@ import java.util.Scanner;
                         }
                         break;
                     case "3":
-                          Order.AvslutaOrder();
+                        shoppingCart.saveIndividualPurchaseToFile();
+                        shoppingCart.savePurchaseToFile();
+                        System.out.println("Din beställning är bekräftad!");
                         // <----------  LÄGG DIN METODER HÄR! 
                             //Öppna aktuell kunds textfil med information om köp och kvitton
                         break;
