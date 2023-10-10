@@ -1,7 +1,2 @@
 Kalle,Alli,Sova,admin=true
-User,User,Kalle,Rorsjogatan
-DLA,dkda,dawd,JabbadabbaDO
-Bertil2,Olle,Bertil,Hallsta
-Bruce,dkakda,dkakd,kdakd
 a,a,a,a
-Olof,Meow,Olle,Rorsjogatan
