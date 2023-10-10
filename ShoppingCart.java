@@ -107,7 +107,6 @@ public class ShoppingCart {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
         }
 
@@ -185,7 +184,6 @@ public class ShoppingCart {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
         }
 
@@ -226,7 +224,6 @@ public class ShoppingCart {
                 System.out.println("Det finns inget att spara");
             }
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
         }
     }
