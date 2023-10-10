@@ -219,7 +219,6 @@ public class ShoppingCart {
 
                 }
                 writer.close();
-                System.out.println("Din order är sparad");
             } else {
                 System.out.println("Det finns inget att spara");
             }
@@ -255,7 +254,6 @@ public class ShoppingCart {
                 
                 }
                 writer.close();
-                System.out.println("Din order är sparad");
             } else {
                 System.out.println("Det finns inget att spara");
             }
