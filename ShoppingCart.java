@@ -113,7 +113,6 @@ public class ShoppingCart {
                 }
             }
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
         }
 
@@ -158,7 +157,6 @@ public class ShoppingCart {
             }
 
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
         }
 
@@ -176,8 +174,7 @@ public class ShoppingCart {
                 file.createNewFile();
             }
         } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Filen kunde inte skapas");
+            System.out.println("Filen kunde inte skapas" + e.getMessage());
         }
 
         try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
@@ -190,7 +187,6 @@ public class ShoppingCart {
 
             System.out.println("Din order är sparad");
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när du skulle spara ordern" + e.getMessage());
         }
     }
@@ -225,7 +221,6 @@ public class ShoppingCart {
                 System.out.println("Det finns inget att spara");
             }
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
         }
     }
@@ -261,7 +256,6 @@ public class ShoppingCart {
                 System.out.println("Det finns inget att spara");
             }
         } catch (IOException e) {
-            e.printStackTrace();
             System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
         }
     }
