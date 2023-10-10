@@ -138,8 +138,7 @@ import java.util.Scanner;
                 
                 Customer.showShoppingCart();
                 System.out.print("\n\n1. Ta bort varor \n" +
-                        "2. Spara order\n" +
-                        "3. Beställ order \n" +
+                        "2. Genomför köp\n" +
                         "\n\nQ. Gå tillbaka" +
                         "\nVal - ");
                 String choice = scan.next();
@@ -150,12 +149,8 @@ import java.util.Scanner;
                         break;
                     case "2":
                         shoppingCart.saveIndividualPurchaseToFile();
-                    case "3":
-                        shoppingCart.saveIndividualPurchaseToFile();
                         shoppingCart.savePurchaseToFile();
                         System.out.println("Din beställning är bekräftad!");
-                        // <----------  LÄGG DIN METODER HÄR! 
-                            //Öppna aktuell kunds textfil med information om köp och kvitton
                         break;
                     case "Q":
                     case "q":

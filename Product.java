@@ -9,6 +9,12 @@ public class Product {
     private double price;
     public int qty;
     private double qtyPrice;
+    private int increaseQty;
+   
+    public int getIncreaseQty() {
+        increaseQty = (qty + 1);
+        return increaseQty;
+    }
 
     public int getQty() {
         return qty;

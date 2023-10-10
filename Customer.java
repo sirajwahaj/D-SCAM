@@ -146,6 +146,9 @@ public class Customer {
             System.out.println("\n\nDin varukorg innehåller  följande produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
+                if (product.getQty() == 0) {
+                    product.setQty(1);
+                }
                 System.out.println((i + 1) + ". " + product.getQty() + "x " + product.getName() +" - Beskrivning: " +  product.getDescription() + " - Pris: "+  " " + product.getQtyPrice() + " kr");
             }
             double totalSum = 0.0;

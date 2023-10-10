@@ -34,6 +34,8 @@ public class ShoppingCart {
     }
 
 
+
+
     public void loadCustomersOrder(){
         String customerOrder = "textfile/Order.txt";
         File file = new File(customerOrder);
@@ -49,7 +51,7 @@ public class ShoppingCart {
                 for(Product product : order.getProducts()){
                 System.out.println("Produkt: " + product.getName());
                 System.out.println("Produktbeskrivning: " + product.getDescription());
-                System.out.println("Antal: " + order.getQty());
+                System.out.println("Antal: " + product.getQty());
                 System.out.println("Pris: " + product.getQtyPrice()+ "\n");//Lägg till produktens pris
                 }
 
@@ -65,37 +67,7 @@ public class ShoppingCart {
         }
 
     }
-    public void loadIndividualCustomersOrder(){
-        String customerOrder = "textfile/CustomerOrder/Savedorders/"+username+".txt";
-        File file = new File(customerOrder);
 
-
-        if(file.exists() && username.equals(file.getName().replace(".txt",""))){
-
-            List<Order> loadOrders = loadIndividualOrdersfromfile();
-            for(Order order : loadOrders){
-                System.out.println("\n\nOrderNo: " + order.getOrderNum() + "\nKund: " + order.getUsername() + "\nDate: " + order.getDate() + " " + order.getTime());
-                System.out.println("------------------------");
-                
-                for(Product product : order.getProducts()){
-                System.out.println("Produkt: " + product.getName());
-                System.out.println("Produktbeskrivning: " + product.getDescription());
-                System.out.println("Antal: " + order.getQty());
-                System.out.println("Pris: " + product.getQtyPrice()+ "\n");//Lägg till produktens pris
-                }
-
-                double totalPrice = 0.0;
-                for(Product product : order.getProducts()){
-                    totalPrice += product.getPrice();
-                }
-                System.out.println("------------------------");
-                System.out.println("Totalt pris: " + totalPrice);
-            }
-        } else {
-            System.out.println("du har inga sparade ordrar");
-        }
-
-    }
 
     public List<Order> loadOrdersfromfile() {
         List<Order> savedOrders = new ArrayList<>();
@@ -124,7 +96,7 @@ public class ShoppingCart {
                     }
 
                     if(existingOrder == null) {
-                        Order newOrder = new Order(orderUsername,orderDate,orderTime,productQty);
+                        Order newOrder = new Order(orderUsername,orderDate,orderTime);
                         savedOrders.add(newOrder);
                         existingOrder = newOrder;
                     }
@@ -140,6 +112,38 @@ public class ShoppingCart {
         }
 
         return savedOrders;
+    }
+
+     public void loadIndividualCustomersOrder(){
+        String customerOrder = "textfile/CustomerOrder/Savedorders/"+username+".txt";
+        File file = new File(customerOrder);
+
+
+        if(file.exists() && username.equals(file.getName().replace(".txt",""))){
+
+            List<Order> loadOrders = loadIndividualOrdersfromfile();
+            for(Order order : loadOrders){
+                System.out.println("\n\nOrderNo: " + order.getOrderNum() + "\nKund: " + order.getUsername() + "\nDate: " + order.getDate() + " " + order.getTime());
+                System.out.println("------------------------");
+                
+                for(Product product : order.getProducts()){
+                System.out.println("Produkt: " + product.getName());
+                System.out.println("Produktbeskrivning: " + product.getDescription());
+                System.out.println("Antal: " + product.getQty());
+                System.out.println("Pris: " + product.getQtyPrice()+ "\n");
+                }
+
+                double totalPrice = 0.0;
+                for(Product product : order.getProducts()){
+                    totalPrice += product.getPrice();
+                }
+                System.out.println("------------------------");
+                System.out.println("Totalt pris: " + totalPrice);
+            }
+        } else {
+            System.out.println("du har inga sparade ordrar");
+        }
+
     }
 
     public List<Order> loadIndividualOrdersfromfile() {
@@ -170,7 +174,7 @@ public class ShoppingCart {
                     }
 
                     if(existingOrder == null) {
-                        Order newOrder = new Order(username,orderDate,orderTime,productQty);
+                        Order newOrder = new Order(username,orderDate,orderTime);
                         savedOrders.add(newOrder);
                         existingOrder = newOrder;
                     }
@@ -189,69 +193,7 @@ public class ShoppingCart {
     }
 
 
-    public void saveCustomersOrderToFile(List<String> orderProductStrings) {
-        String fileName = "textfile/CustomerOrder/Savedorders/" + username + ".txt";
 
-        try {
-            File file = new File(fileName);
-
-            if(!file.exists()){
-                file.createNewFile();
-            }
-        } catch (Exception e) {
-            e.printStackTrace();
-            System.out.println("Filen kunde inte skapas");
-        }
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName))) {
-            for (String orderProductString : orderProductStrings) {
-
-                writer.write(orderProductString);
-                writer.newLine();
-                writer.flush();
-            }
-
-            System.out.println("Din order är sparad");
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Något gick fel när du skulle spara ordern" + e.getMessage());
-        }
-    }
-    public void savePurchaseToFile() {
-        LocalDate localDate = LocalDate.now();
-        LocalTime localTime = LocalTime.now();
-        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
-
-        String username = userSession.getUsername();
-        String fileName = "textfile/Order.txt";
-
-        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
-            List<Product> productsInCart = products;
-
-            if (!productsInCart.isEmpty()) {
-                for (Product product : productsInCart) {
-                    String orderProductString = username + "," +
-                            localDate + "," +
-                            localTime.format(timeFormatter) + "," +
-                            product.getName() + "," +
-                            product.getDescription() + "," +
-                            product.getQty() + "," +
-                            product.getQtyPrice();
-                    writer.write(orderProductString);
-                    writer.newLine();
-                    writer.flush();
-                
-                }
-                writer.close();
-                System.out.println("Din order är sparad");
-            } else {
-                System.out.println("Det finns inget att spara");
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
-        }
-    }
     public void saveIndividualPurchaseToFile() {
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
@@ -288,6 +230,46 @@ public class ShoppingCart {
             System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
         }
     }
+
+
+    public void savePurchaseToFile() {
+        LocalDate localDate = LocalDate.now();
+        LocalTime localTime = LocalTime.now();
+        DateTimeFormatter timeFormatter = DateTimeFormatter.ofPattern("HH:mm");
+
+        String username = userSession.getUsername();
+        String fileName = "textfile/Order.txt";
+
+        try (BufferedWriter writer = new BufferedWriter(new FileWriter(fileName, true))) {
+            List<Product> productsInCart = products;
+
+            if (!productsInCart.isEmpty()) {
+                for (Product product : productsInCart) {
+                    String orderProductString = username + "," +
+                            localDate + "," +
+                            localTime.format(timeFormatter) + "," +
+                            product.getName() + "," +
+                            product.getDescription() + "," +
+                            product.getQty() + "," +
+                            product.getQtyPrice();
+                    writer.write(orderProductString);
+                    writer.newLine();
+                    writer.flush();
+                
+                }
+                writer.close();
+                System.out.println("Din order är sparad");
+            } else {
+                System.out.println("Det finns inget att spara");
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Något gick fel när du skulle spara ordern: " + e.getMessage());
+        }
+    }
+
 }
+
+
 
 
