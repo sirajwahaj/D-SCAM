@@ -14,7 +14,7 @@ public class Order {
     private static int orderNumberCounter = 1;
     private List<Product> products;
 
-    public Order(String username, String date, String time, String product, String description, int qty, double price) {
+    public Order(String username, String date, String time) {
         this.orderNum = orderNumberCounter++;
         this.username = username;
         this.date = date;

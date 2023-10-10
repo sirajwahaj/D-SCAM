@@ -149,22 +149,7 @@ import java.util.Scanner;
                         removeProductFromCart();
                         break;
                     case "2":
-                        List<Product> productsInCart = shoppingCart.getProducts();
-
-                        if(!productsInCart.isEmpty()){
-                            List<String> shoppingCartStrings = new ArrayList<>();
-                        
-                            for (Product product : shoppingCart.getProducts()) {
-                                shoppingCartStrings.add(product.getName()+ 
-                                "," + product.getDescription()+
-                                "," + product.getQty()+
-                                "," + product.getQtyPrice());
-                            }
-                            shoppingCartOrder.saveCustomersOrderToFile(shoppingCartStrings);
-                        } else {
-                            System.out.println("Det finns inget att spara");
-                        }
-                        break;
+                        shoppingCart.saveIndividualPurchaseToFile();
                     case "3":
                         shoppingCart.saveIndividualPurchaseToFile();
                         shoppingCart.savePurchaseToFile();

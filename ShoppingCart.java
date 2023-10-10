@@ -73,10 +73,10 @@ public class ShoppingCart {
                 System.out.println("------------------------");
                 
                 for(Product product : order.getProducts()){
-                System.out.println("Produkt: " + order.getProduct());
-                System.out.println("Produktbeskrivning: " + order.getDescription());
-                System.out.println("Antal: " + order.getQty());
-                System.out.println("Pris: " + product.getPrice()+ "\n");//Lägg till produktens pris
+                System.out.println("Produkt: " + product.getName());
+                System.out.println("Produktbeskrivning: " + product.getDescription());
+                System.out.println("Antal: " + product.getQty());
+                System.out.println("Pris: " + product.getQtyPrice()+ "\n");//Lägg till produktens pris
                 }
 
                 double totalPrice = 0.0;
@@ -147,7 +147,7 @@ public class ShoppingCart {
                     }
 
                     if(existingOrder == null) {
-                        Order newOrder = new Order(username,orderDate,orderTime,productName,productDescription,productQty,productPrice);
+                        Order newOrder = new Order(username,orderDate,orderTime);
                         savedOrders.add(newOrder);
                         existingOrder = newOrder;
                     }
