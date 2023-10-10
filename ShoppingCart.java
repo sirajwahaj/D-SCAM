@@ -73,8 +73,8 @@ public class ShoppingCart {
                 System.out.println("------------------------");
                 
                 for(Product product : order.getProducts()){
-                System.out.println("Produkt: " + order.getProduct());
-                System.out.println("Produktbeskrivning: " + order.getDescription());
+                System.out.println("Produkt: " + product.getName());
+                System.out.println("Produktbeskrivning: " + product.getDescription());
                 System.out.println("Antal: " + order.getQty());
                 System.out.println("Pris: " + product.getPrice()+ "\n");//Lägg till produktens pris
                 }

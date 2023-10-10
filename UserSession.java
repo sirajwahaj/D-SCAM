@@ -32,7 +32,9 @@ public class UserSession {
                 this.username = null;
                 this.isLoggedIn = false;
                 System.out.println("Du har blivit utloggad.");
-            }else throw new IllegalArgumentException("ogiltig inmatning");
+            } else if (answer.equalsIgnoreCase("No")) {
+                System.out.println("Utloggning avbruten");
+            } else throw new IllegalArgumentException("ogiltig inmatning");
         }catch (IllegalArgumentException e) {
             System.out.println(e.getMessage());
         }catch (Exception e){
