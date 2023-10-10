@@ -52,7 +52,7 @@ public class Product {
         this.name = name;
         this.description = description;
         this.price = price;
-        this.qty = 1;
+        this.qty = qty;
     }
 
     @Override

@@ -43,18 +43,23 @@ public class ShoppingCart {
 
         List<Order> loadOrders = loadOrdersfromfile();
         for(Order order : loadOrders){
-            System.out.println("\n\nOrderNo: " + order.getOrderNum());
-            System.out.println("Kund: " + order.getUsername());
-            System.out.println("Date: " + order.getDate() + " " + order.getTime());
-            System.out.println("------------------------");
-            System.out.println("Produkt: " + order.getProduct());
-            System.out.println("produktbeskrivning: " + order.getDescription());
-            System.out.println("Antal: " + order.getQty());
-            System.out.println("Pris: " + order.getPrice()/order.getQty()+" x "+order.getQty());//Lägg till produktens pris
-            System.out.println("------------------------");
-            System.out.println("Totalt pris: " + order.getPrice());
+                System.out.println("\n\nOrderNo: " + order.getOrderNum() + "\nKund: " + order.getUsername() + "\nDate: " + order.getDate() + " " + order.getTime());
+                System.out.println("------------------------");
+                
+                for(Product product : order.getProducts()){
+                System.out.println("Produkt: " + product.getName());
+                System.out.println("Produktbeskrivning: " + product.getDescription());
+                System.out.println("Antal: " + order.getQty());
+                System.out.println("Pris: " + product.getQtyPrice()+ "\n");//Lägg till produktens pris
+                }
 
-        }
+                double totalPrice = 0.0;
+                for(Product product : order.getProducts()){
+                    totalPrice += product.getPrice();
+                }
+                System.out.println("------------------------");
+                System.out.println("Totalt pris: " + totalPrice);
+            }
         } else {
             System.out.println("du har inga sparade ordrar");
         }
@@ -75,7 +80,7 @@ public class ShoppingCart {
                 for(Product product : order.getProducts()){
                 System.out.println("Produkt: " + product.getName());
                 System.out.println("Produktbeskrivning: " + product.getDescription());
-                System.out.println("Antal: " + product.getQty());
+                System.out.println("Antal: " + order.getQty());
                 System.out.println("Pris: " + product.getQtyPrice()+ "\n");//Lägg till produktens pris
                 }
 
@@ -108,10 +113,27 @@ public class ShoppingCart {
                     String productDescription = parts[4];
                     int productQty = Integer.parseInt(parts[5]);
                     double productPrice = Double.parseDouble(parts[6]);
-                        Order newOrder = new Order(orderUsername,orderDate,orderTime,productName,productDescription,productQty,productPrice);
+                    
+                    Order existingOrder = null;
+                    for (Order order : savedOrders){
+                        if(order.getDate().equals(orderDate) &&
+                            order.getTime().equals(orderTime)){
+                            existingOrder = order;
+                                break;
+                            }
+                    }
+
+                    if(existingOrder == null) {
+                        Order newOrder = new Order(orderUsername,orderDate,orderTime,productQty);
                         savedOrders.add(newOrder);
+                        existingOrder = newOrder;
+                    }
+
+                    Product product = new Product(productName, productDescription, productPrice, productQty);
+                    existingOrder.getProducts().add(product);
                 }
             }
+
         } catch (IOException e) {
             e.printStackTrace();
             System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
@@ -119,6 +141,7 @@ public class ShoppingCart {
 
         return savedOrders;
     }
+
     public List<Order> loadIndividualOrdersfromfile() {
         List<Order> savedOrders = new ArrayList<>();
         String fileName = "textfile/CustomerOrder/Savedorders/"+username+".txt";
@@ -147,7 +170,7 @@ public class ShoppingCart {
                     }
 
                     if(existingOrder == null) {
-                        Order newOrder = new Order(username,orderDate,orderTime);
+                        Order newOrder = new Order(username,orderDate,orderTime,productQty);
                         savedOrders.add(newOrder);
                         existingOrder = newOrder;
                     }

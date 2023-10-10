@@ -1,2 +1,0 @@
-Lampa,Svart,2,200.0
-Matta,Orange,2,258.0

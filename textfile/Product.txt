@@ -1,2 +1,6 @@
 Lampa,Svart,100.0,0
 Matta,Orange,129.0,0
+Ljus,Vit,400.0,0
+Eluttag,Vit,600.0,0
+Golv,Svart,1000.0,0
+Tapet,Orange,350.0,0
