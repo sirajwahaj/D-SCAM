@@ -1,4 +1,4 @@
-Kalle,Alli,Sova,admin=true
+Kalle,Alli,Sova,hemligt,admin=true
 a,a,a,a
 b,b,b,b
 

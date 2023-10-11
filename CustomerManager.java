@@ -27,6 +27,7 @@ public class CustomerManager {
             boolean run = true;
 
             while(run){
+
                 System.out.println("\n\nUppdatera kund: " + customers.get(indexToUpdate).getName() + "s" + " information" +
                                 "\n1. Namn - " + customers.get(indexToUpdate).getName() +
                                 "\n2. Användarnamn - " + customers.get(indexToUpdate).getUsername() +
@@ -70,40 +71,13 @@ public class CustomerManager {
                 }
             
             }
-            
-
-
            
         } else {
-            System.out.println("Kunde inte hitta kund.");
+            System.out.println("\n\nKunde inte hitta kund.");
         }
     
     }
 
-    public static List<Customer> loadCustomersFromFile() {
-        List<Customer> customers = new ArrayList<>();
-        String fileName = "textfile/account.txt";
-
-        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
-            while (scanner.hasNextLine()) {
-                String line = scanner.nextLine();
-                String[] parts = line.split(",");
-                if (parts.length == 4) {
-                    String username = parts[0];
-                    String password = parts[1];
-                    String name = parts[2];
-                    String address = parts[3];
-                    Customer customer = new Customer(username, password, name, address);
-                    customers.add(customer);
-                }
-            }
-        } catch (IOException e) {
-            e.printStackTrace();
-            System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
-        }
-
-        return customers;
-    }
 
     public static void saveCustomersToFile(List<Customer> customers) {
         String fileName = "textfile/account.txt";
@@ -119,6 +93,8 @@ public class CustomerManager {
             System.out.println("Något gick fel när kundens uppgifter skulle sparas i textfilen " + e.getMessage());
         }
     }
+
+
     public static void listAllCustomers() {
         List<Customer> customers = CustomerManager.loadCustomersFromFile();
         System.out.println("\n\nLista på alla kunder:");
@@ -127,5 +103,30 @@ public class CustomerManager {
             System.out.println(rowcount + ". " + " Förnamn: " + customer.getName());
             rowcount++;
         }
+    }
+
+    public static List<Customer> loadCustomersFromFile() {
+        List<Customer> customers = new ArrayList<>();
+        String fileName = "textfile/account.txt";
+
+        try (Scanner scanner = new Scanner(new FileReader(fileName))) {
+            while (scanner.hasNextLine()) {
+                String line = scanner.nextLine();
+                String[] parts = line.split(",");
+                if (parts.length >= 4) {
+                    String username = parts[0];
+                    String password = parts[1];
+                    String name = parts[2];
+                    String address = parts[3];
+                    Customer customer = new Customer(username, password, name, address);
+                    customers.add(customer);
+                }
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.out.println("Något gick fel när kund uppgifterna skulle laddas från textfilen: " + e.getMessage());
+        }
+
+        return customers;
     }
 }
