@@ -7,10 +7,7 @@ import java.util.List;
 import java.util.Scanner;
 
 public class CustomerManager {
-    
-    public void CustomerManager(){
 
-    }
     
     public static void editCustomer(String username){
         List<Customer> customers = loadCustomersFromFile();
