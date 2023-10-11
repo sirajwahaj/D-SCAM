@@ -36,7 +36,6 @@ public class ShoppingCart {
         return userSession.getUsername();
     }
 
-
     public void savePurchaseToFile() {
         LocalDate localDate = LocalDate.now();
         LocalTime localTime = LocalTime.now();
@@ -75,7 +74,3 @@ public class ShoppingCart {
     }
 
 }
-
-
-
-
