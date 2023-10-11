@@ -78,7 +78,7 @@ public class Product {
         boolean run = true;
 
         while (run) {
-            System.out.println("Hantera Produkter:");
+            System.out.println("\n\nHantera Produkter:");
             System.out.println("1. Lägg till ny produkt");
             System.out.println("2. Ta bort produkt");
             System.out.println("Q. Gå tillbaka");
@@ -88,7 +88,7 @@ public class Product {
             switch (choice) {
                 case "1":
                     // Lägger till nya produkter
-                    System.out.println("Lägg till ny produkt:");
+                    System.out.println("\n\nLägg till ny produkt:");
                     System.out.print("Namn: ");
                     name = scan.nextLine();
                     System.out.print("Beskrivning: ");
@@ -113,13 +113,13 @@ public class Product {
 
                     showProductsToCustomer(products);
                     
-                    System.out.println("Ta bort produkt:");
+                    System.out.println("\n\nTa bort produkt:");
                     System.out.print("Skriv in namnet på produkten du vill plocka bort: ");
                     String productToRemove = scan.nextLine();
                     if (removeProductFromFile(productToRemove)) {
-                        System.out.println("Produkten har plockats bort från listan!");
+                        System.out.println("\n\nProdukten har plockats bort från listan!");
                     } else {
-                        System.out.println("Produkten hittades inte.");
+                        System.out.println("\n\nProdukten hittades inte.");
                     }
                     break;
                 case "Q":
@@ -215,7 +215,7 @@ public class Product {
         if (products.isEmpty()) {
             System.out.println("Inga produkter tillgängliga.");
         } else {
-            System.out.println("Tillgängliga produkter:");
+            System.out.println("\n\nTillgängliga produkter:");
             for (int i = 0; i < products.size(); i++) {
                 Product product = products.get(i);
                 System.out.println((i + 1) + ". " + product.getName() + " - Pris: " + product.getPrice() + " kr");

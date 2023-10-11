@@ -57,6 +57,7 @@ public class UserSession {
     public boolean isLoggedIn(){
         return isLoggedIn;
     }
+    
     public boolean isUserAdmin(){
         return isUserAdmin;
     }
