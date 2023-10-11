@@ -1,4 +1,3 @@
-import java.io.*;
 import java.util.*;
 
 public class Order {
@@ -17,7 +16,6 @@ public class Order {
         this.time = time;
         this.products = new ArrayList<>();
     }
-
 
     @Override
     public String toString() {

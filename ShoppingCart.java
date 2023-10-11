@@ -11,6 +11,7 @@ public class ShoppingCart {
     private UserSession userSession = UserSession.getInstance();
     private List<Product> products;
     private String username = userSession.getUsername();
+    private int latestOrderNumber = 1;
 
     
     public ShoppingCart() {
@@ -18,6 +19,9 @@ public class ShoppingCart {
         products = new ArrayList<>();
     }
     
+    private int getNextOrderNumber() {
+        return latestOrderNumber++;
+    }
 
     public void addProduct(Product product) {
         products.add(product);
