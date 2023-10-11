@@ -107,8 +107,7 @@ import java.util.Scanner;
                             break;
                         case "Q":
                         case "q":
-                            ShoppingCart cart = new ShoppingCart(username);
-                            cart.clearShoppingCart();
+
                             userSession.logout();
                             break;
                         default:

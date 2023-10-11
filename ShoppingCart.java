@@ -13,8 +13,7 @@ public class ShoppingCart {
     private List<Product> products;
     private String username = userSession.getUsername();
 
-    public ShoppingCart(String username) {
-        this.username = username;
+    public ShoppingCart() {
         products = new ArrayList<>();
     }
 
@@ -36,6 +35,7 @@ public class ShoppingCart {
     public String getUsername() {
         return userSession.getUsername();
     }
+
 
     public void savePurchaseToFile() {
         LocalDate localDate = LocalDate.now();

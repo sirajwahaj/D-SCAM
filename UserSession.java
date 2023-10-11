@@ -1,9 +1,11 @@
 import java.util.Scanner;
 public class UserSession {
+    private ShoppingCart cart = Customer.getShoppingCart();
     private String username;
     private boolean isLoggedIn = false;
     Scanner scan = new Scanner(System.in);
     private static UserSession instance;
+    
     
 
 
@@ -48,12 +50,17 @@ public class UserSession {
         
     }
 
+
     public String getUsername(){
         return username;
     }
 
     public boolean isLoggedIn(){
         return isLoggedIn;
+    }
+    
+    public ShoppingCart getShoppingCart() {
+        return cart;
     }
 
     public void clearShoppingCart() {
