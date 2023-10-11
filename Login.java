@@ -32,7 +32,7 @@ public class Login {
                 } 
                 if (userFound) { // Har lagt denna if stats utanför loopen då den annars bara loopar första linjen i accounts och inte söker alla rader i accounts.
                     if (isAdmin) {
-                        userSession.login(username);
+                        userSession.loginAdmin(username);
                         TerminalApp.adminPage();
                     } else {
                         userSession.login(username);

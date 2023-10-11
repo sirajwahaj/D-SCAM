@@ -3,6 +3,7 @@ import java.util.Scanner;
 public class UserSession {
     private String username;
     private boolean isLoggedIn = false;
+    private boolean isUserAdmin = false;
     Scanner scan = new Scanner(System.in);
     private static UserSession instance;
 
@@ -16,6 +17,11 @@ public class UserSession {
             instance = new UserSession();
         }
         return instance;
+    }
+    public void loginAdmin(String username){
+        this.username = username;
+        this.isLoggedIn = true;
+        this.isUserAdmin = true;
     }
 
     public void login(String username){
@@ -50,5 +56,8 @@ public class UserSession {
 
     public boolean isLoggedIn(){
         return isLoggedIn;
+    }
+    public boolean isUserAdmin(){
+        return isUserAdmin;
     }
 }
