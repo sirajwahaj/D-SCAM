@@ -1,13 +1,10 @@
 import java.util.Scanner;
+
 public class UserSession {
-    private ShoppingCart cart = Customer.getShoppingCart();
     private String username;
     private boolean isLoggedIn = false;
     Scanner scan = new Scanner(System.in);
     private static UserSession instance;
-    
-    
-
 
     private UserSession(){
         
@@ -24,7 +21,6 @@ public class UserSession {
     public void login(String username){
         this.username = username;
         this.isLoggedIn = true;
-    
     }
 
     public void logout(){
@@ -33,10 +29,8 @@ public class UserSession {
 
             String answer = scan.nextLine();
             if(answer.equalsIgnoreCase("Yes")){
-
                 this.username = null;
                 this.isLoggedIn = false;
-                clearShoppingCart();
                 System.out.println("Du har blivit utloggad.");
             } else if (answer.equalsIgnoreCase("No")) {
                 System.out.println("Utloggning avbruten");
@@ -50,7 +44,6 @@ public class UserSession {
         
     }
 
-
     public String getUsername(){
         return username;
     }
@@ -58,17 +51,4 @@ public class UserSession {
     public boolean isLoggedIn(){
         return isLoggedIn;
     }
-    
-    public ShoppingCart getShoppingCart() {
-        return cart;
-    }
-
-    public void clearShoppingCart() {
-        ShoppingCart cart = Customer.getShoppingCart();
-        cart.clearShoppingCart(); // Rensa kundvagnen
-    }
-    
-     
-} 
- 
-
+}

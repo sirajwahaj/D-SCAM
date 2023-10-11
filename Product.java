@@ -61,6 +61,9 @@ public class Product {
         this.qty = qty;
     }
 
+    public void addProduct(Product product) {
+    }
+
     @Override
     public String toString() {
         return name + "," + description + "," + price + "," + qty;

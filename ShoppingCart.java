@@ -1,8 +1,11 @@
 import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileReader;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Scanner;
 import java.time.LocalDate;
 import java.time.LocalTime;
 import java.time.format.DateTimeFormatter;
@@ -13,9 +16,12 @@ public class ShoppingCart {
     private List<Product> products;
     private String username = userSession.getUsername();
 
+    
     public ShoppingCart() {
+
         products = new ArrayList<>();
     }
+    
 
     public void addProduct(Product product) {
         products.add(product);
@@ -26,16 +32,15 @@ public class ShoppingCart {
     }
 
     public List<Product> getProducts() {
+        if (products == null){
+            loadProducts();
+        }
         return products;
     }
 
-    public void clearShoppingCart() {
-        products.clear();
-    }
-    public String getUsername() {
-        return userSession.getUsername();
-    }
+    public void loadProducts(){
 
+    }
 
     public void savePurchaseToFile() {
         LocalDate localDate = LocalDate.now();
@@ -63,8 +68,6 @@ public class ShoppingCart {
                 
                 }
                 writer.close();
-                clearShoppingCart();
-                System.out.println("Din beställning är bekräftad!");
             } else {
                 System.out.println("Det finns inget att spara");
             }
@@ -75,7 +78,3 @@ public class ShoppingCart {
     }
 
 }
-
-
-
-

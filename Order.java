@@ -3,10 +3,10 @@ import java.util.*;
 
 public class Order {
     private UserSession userSession = UserSession.getInstance();
-    private String username = userSession.getUsername();
-    private String date;
-    private String time;
-    private int orderNum;
+    String username;
+    String date;
+    String time;
+    int orderNum;
     private static int orderNumberCounter = 1;
     private List<Product> products;
 
@@ -65,8 +65,5 @@ public class Order {
             products.add(product);
         }
     }
-
-
-    
 
 }

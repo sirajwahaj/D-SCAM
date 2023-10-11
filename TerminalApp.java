@@ -6,13 +6,12 @@ import java.util.Scanner;
         private UserSession userSession = UserSession.getInstance();
 
         Scanner scan = new Scanner(System.in);
-         
+        boolean run = true; 
         
 
         public void run(){
-            Customers customers = new Customers();
             Login Login = new Login();
-            boolean run = true;            
+           
             while(run){
                 System.out.print("\n\nVälkommen till D-SCAM \n " +
                     "1. Logga in \n " +
@@ -27,6 +26,7 @@ import java.util.Scanner;
                             Login.loginUser();
                             break;
                         case "2":
+                            Customers customers = new Customers();
                             customers.registerUser();
                             break;
                         case "3":
@@ -59,6 +59,7 @@ import java.util.Scanner;
                 switch(choice){
                     case "1":
                         Product.AddProduct();
+                        //Visa alla produkter med möjlighet att ta bort/skapa ny
                         break;
                     case "2":
                         CustomerManager.listAllCustomers();
@@ -85,7 +86,7 @@ import java.util.Scanner;
             Scanner scan = new Scanner(System.in);
             while(userSession.isLoggedIn()){
                 String username = userSession.getUsername();
-                System.out.print("\n\nVälkommen - " + "Kung: " + username + "\n" +
+                System.out.print("\n\nVälkommen - " + username + "\n" +
                         "1. Shoppa \n" +
                         "2. Varukorg \n" +
                         "3. Se kvitton och orderhistorik \n " +
@@ -99,6 +100,7 @@ import java.util.Scanner;
                             pickAProductToAddToCart();
                             break;
                         case "2":
+                            System.out.println("dada");
                             shoppingCartPage();
                             break;
                         case "3":
@@ -107,7 +109,6 @@ import java.util.Scanner;
                             break;
                         case "Q":
                         case "q":
-
                             userSession.logout();
                             break;
                         default:
@@ -123,42 +124,41 @@ import java.util.Scanner;
         }
 
         public void shoppingCartPage() {
-
             Scanner scan = new Scanner(System.in);
             boolean run = true;
             ShoppingCart shoppingCart = Customer.getShoppingCart();
-        
-                while (run) {
-                    
-                    Customer.showShoppingCart();
-                    System.out.print("\n\n1. Ta bort varor \n" +
-                            "2. Genomför köp\n" +
-                            "\n\nQ. Gå tillbaka" +
-                            "\nVal - ");
-                    String choice = scan.next();
-                try{
-                    switch (choice) {
-                        case "1":
-                            removeProductFromCart();
-                            break;
-                        case "2":
-                            //shoppingCart.saveIndividualPurchaseToFile();
-                            shoppingCart.savePurchaseToFile();
-                            break;
-                        case "Q":
-                        case "q":
-                            run = false;
-                            break;
-                        default:
-                                throw new IllegalArgumentException("Ogiltigt val");
-                        }
-                    }catch (InputMismatchException e){
-                        System.out.println("Felaktig inmatning. Ange 1, 2 eller Q");
-                        scan.next();
-                    }catch (IllegalArgumentException e){
-                        System.out.println(e.getMessage());
+
+            while (run) {
+                
+                Customer.showShoppingCart();
+                System.out.print("\n\n1. Ta bort varor \n" +
+                        "2. Genomför köp\n" +
+                        "\n\nQ. Gå tillbaka" +
+                        "\nVal - ");
+                String choice = scan.next();
+            try{
+                switch (choice) {
+                    case "1":
+                        removeProductFromCart();
+                        break;
+                    case "2":
+                        shoppingCart.savePurchaseToFile();
+                        System.out.println("Din beställning är bekräftad!");
+                        break;
+                    case "Q":
+                    case "q":
+                        run = false;
+                        break;
+                    default:
+                            throw new IllegalArgumentException("Ogiltigt val");
                     }
+                }catch (InputMismatchException e){
+                    System.out.println("Felaktig inmatning. Ange 1, 2 eller Q");
+                    scan.next();
+                }catch (IllegalArgumentException e){
+                    System.out.println(e.getMessage());
                 }
+            }
         }
 
 
@@ -183,22 +183,20 @@ import java.util.Scanner;
                     if (choice.equalsIgnoreCase("q")) {
                         run = false;
                     } else if (!Product.onlyDigitInString(choice)) {
+
                         System.out.println("Du måste välja 1 - " + products.size() + " eller Q!");
 
                     } else if(!choice.isEmpty()){
                         int productIndex = Integer.parseInt(choice) - 1;
-                        
                         if (productIndex >= 0 && productIndex < products.size()) {
                             Product selectedProduct = products.get(productIndex);
-                             
-                            if (selectedProduct.getQty() == 0) {
+
+                            if(selectedProduct.getQty() == 0){
                                 selectedProduct.setQty(1);
                             }
-
                             Customer.addToShoppingCart(selectedProduct);
 
                             System.out.println("\n \"" + selectedProduct.getName() + "\" har lagts till i din varukorg.\n");
-                            //order.addProductToOrderFile(selectedProduct);
                         } else {
                             throw new IllegalArgumentException("Du måste välja 1 - " + products.size() + " eller Q!");
                         }
