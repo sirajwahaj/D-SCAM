@@ -127,11 +127,12 @@ import java.util.Scanner;
             Scanner scan = new Scanner(System.in);
             boolean run = true;
             ShoppingCart shoppingCart = Customer.getShoppingCart();
-
+            String username = userSession.getUsername();
             while (run) {
                 
                 Customer.showShoppingCart();
-                System.out.print("\n\n1. Ta bort varor \n" +
+                System.out.println("\n\nAnvändare: " + username);
+                System.out.print("1. Ta bort varor \n" +
                         "2. Genomför köp\n" +
                         "\n\nQ. Gå tillbaka" +
                         "\nVal - ");
@@ -143,7 +144,6 @@ import java.util.Scanner;
                         break;
                     case "2":
                         shoppingCart.savePurchaseToFile();
-                        System.out.println("Din beställning är bekräftad!");
                         break;
                     case "Q":
                     case "q":

@@ -2,3 +2,4 @@ Kalle,Alli,Sova,hemligt,admin=true
 a,a,a,a
 b,b,b,b
 
+Christoffer,nice,Chris,Rorsjogatan
