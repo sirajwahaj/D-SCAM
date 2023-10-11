@@ -25,11 +25,7 @@ import java.util.Scanner;
                 try {
                     switch(choice){
                         case "1":
-                            System.out.println("Skriv in username");
-                            String user = scan.nextLine();
-                            System.out.println("Skriv in lösenord");
-                            String pass = scan.nextLine();
-                            Login.loginUser(user, pass);
+                            Login.loginUser();
                             break;
                         case "2":
                             customer.registerUser();

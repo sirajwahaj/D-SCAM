@@ -6,6 +6,7 @@ public class Login {
     private UserSession userSession = UserSession.getInstance();
     TerminalApp TerminalApp = new TerminalApp();
     String username;
+    Scanner scan = new Scanner(System.in);
 
         public void verifyUser(String inputUsername, String inputPassword){
             boolean userFound = false;
@@ -18,7 +19,7 @@ public class Login {
                     String[] parts = line.split(",");
                     if(parts.length >=2){
                         username = parts[0];
-                        String password = parts[1].trim();
+                        String password = parts[1];
 
                         if (inputUsername.equals(username) && inputPassword.equals(password)) {
                             userFound = true;
@@ -48,8 +49,12 @@ public class Login {
             }
         }
 
-    public void loginUser(String inputUsername, String inputPassword) {
-        verifyUser(inputUsername, inputPassword);
+    public void loginUser() {
+        System.out.println("Skriv in username");
+        String user = scan.nextLine();
+        System.out.println("Skriv in lösenord");
+        String pass = scan.nextLine();
+        verifyUser(user, pass);
     }
 
    

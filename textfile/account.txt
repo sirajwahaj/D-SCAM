@@ -1,2 +1,4 @@
 Kalle,Alli,Sova,admin=true
+Olof,b,b,dd,admin=true
 a,a,a,a
+b,b,c,b
