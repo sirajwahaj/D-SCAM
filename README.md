@@ -1,7 +1,7 @@
 # D-SCAM
 ## Gruppmedlemmar:
-Sirajulhaq Wahaj /n
-Christoffer Rehnmark /n
-Andreas Persson \n
-Mattias
+Sirajulhaq Wahaj,   
+Christoffer Rehnmark,   
+Andreas Persson,   
+Mattias,   
 Dinna
